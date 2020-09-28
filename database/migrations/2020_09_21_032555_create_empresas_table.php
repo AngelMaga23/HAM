@@ -13,6 +13,7 @@ class CreateEmpresasTable extends Migration
      */
     public function up()
     {
+	   
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->varchar('cvEmpresa');

@@ -2,5 +2,5 @@
 
 
 @section('content')
-<example-component> </example-component>
+<reserva-component> </reserva-component>
 @endsection
