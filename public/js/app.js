@@ -1969,6 +1969,124 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -38047,141 +38165,490 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card catalogo-seccion" },
-    [
-      _c("div", { staticClass: "card-header" }, [
-        _c("div", { staticClass: "row" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-md-2", staticStyle: { "text-align": "right" } },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-block",
-                  on: {
-                    click: function($event) {
-                      return _vm.MostrarModal()
-                    }
+  return _c("div", { staticClass: "card catalogo-seccion" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group row" }, [
+            _c(
+              "label",
+              {
+                staticClass: "col-sm-2 col-form-label",
+                attrs: { for: "inputEmail3" }
+              },
+              [_vm._v("Nombre")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.CorreoContacto,
+                    expression: "CorreoContacto"
                   }
-                },
-                [_vm._v("\n                    Nuevo +\n                ")]
-              )
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "Modal-component",
-        {
-          attrs: {
-            IdModal: "Modal",
-            size: "modal-lg",
-            titulo: "Nuevo",
-            esnuevo: _vm.EsNuevo
-          }
-        },
-        [
-          _c("template", { slot: "formulario" }, [
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("Nombre")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("Persona")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("RFC")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("Tipo de administración")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("Ubicacion")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-sm-2 col-form-label",
-                  attrs: { for: "inputEmail3" }
-                },
-                [_vm._v("Direccion fiscal")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-10" }, [_c("input")])
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.CorreoContacto },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.CorreoContacto = $event.target.value
+                  }
+                }
+              })
             ])
           ]),
           _vm._v(" "),
-          _c("template", { slot: "acciones" })
-        ],
-        2
-      )
-    ],
-    1
-  )
+          _c("div", { staticClass: "form-group row" }, [
+            _c(
+              "label",
+              {
+                staticClass: "col-sm-2 col-form-label",
+                attrs: { for: "inputEmail3" }
+              },
+              [_vm._v("RFC")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.CorreoContacto,
+                    expression: "CorreoContacto"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.CorreoContacto },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.CorreoContacto = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _vm._v("\n                   Ubicación\n               ")
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "form-group row" }, [
+            _c(
+              "label",
+              {
+                staticClass: "col-sm-2 col-form-label",
+                attrs: { for: "inputEmail3" }
+              },
+              [_vm._v("Dirección")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-8" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.CorreoContacto,
+                    expression: "CorreoContacto"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.CorreoContacto },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.CorreoContacto = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(5)
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _vm._m(6),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("table", { staticClass: "table table-hover" }, [
+            _vm._m(7),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.ProductosAgregados, function(producto, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [_vm._v(" " + _vm._s(producto.Codigo) + " ")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" " + _vm._s(producto.Nombre) + " ")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("div", { staticClass: "input-group mb-3" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: producto.Cantidad,
+                            expression: "producto.Cantidad"
+                          }
+                        ],
+                        staticClass: "form-control col-10",
+                        staticStyle: { "text-align": "center" },
+                        attrs: {
+                          min: "1",
+                          max: producto.Existencia,
+                          type: "number"
+                        },
+                        domProps: { value: producto.Cantidad },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(producto, "Cantidad", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(" " + _vm._s(producto.CostoPublic) + " $ ")
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(producto.Descuento * 100) + " %")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                                " +
+                        _vm._s(producto.Cantidad * producto.CostoPublic) +
+                        " $\n                            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.QuitarProducto(producto, index)
+                          }
+                        }
+                      },
+                      [_vm._v("Eliminar")]
+                    )
+                  ])
+                ])
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-10" }, [
-      _c("h3", [_vm._v("Empresas")])
+    return _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-10" }, [
+          _c("h3", [_vm._v("Registro Empresas")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Hotel")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Persona")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-4 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Pais")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-4 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Estado")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-4 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Ciudad")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-4 col-form-label",
+            attrs: { for: "inputEmail3" }
+          },
+          [_vm._v("Codigo Postal")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "exampleFormControlSelect1" }
+            },
+            [
+              _c("option", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("2")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("3")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("4")]),
+              _vm._v(" "),
+              _c("option", [_vm._v("5")])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10" }, [_c("h4", [_vm._v("Empresas")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-2" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Codigo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Producto")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cantidad")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Descuento %")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")])
+      ])
     ])
   }
 ]
@@ -51154,7 +51621,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 Vue.component('registro-component', __webpack_require__(/*! ./components/RegistroComponent.vue */ "./resources/js/components/RegistroComponent.vue")["default"]);
 Vue.component('Modal-component', __webpack_require__(/*! ./components/plantillas/Modal.vue */ "./resources/js/components/plantillas/Modal.vue")["default"]);
 Vue.component('reserva-component', __webpack_require__(/*! ./components/ReservasHabitacionComponent.vue */ "./resources/js/components/ReservasHabitacionComponent.vue")["default"]);
-Vue.component('rmpresa-component', __webpack_require__(/*! ./components/EmpresaComponent.vue */ "./resources/js/components/EmpresaComponent.vue")["default"]);
+Vue.component('empresa-component', __webpack_require__(/*! ./components/EmpresaComponent.vue */ "./resources/js/components/EmpresaComponent.vue")["default"]);
 
 /***/ }),
 

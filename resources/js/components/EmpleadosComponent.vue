@@ -21,24 +21,6 @@
                     <input />
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input />
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input />
-                </div>
-            </div>
         </template>
         <template slot="acciones">
 

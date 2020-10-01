@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('prueba');
 });
 
+Route::get('empresa', function(){
+    return view('catalogos/Empresa');
+})->name('empresa');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
