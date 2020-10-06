@@ -16,7 +16,7 @@ class CreateEmpresasTable extends Migration
 	   
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->varchar('cvEmpresa');
+            $table->string('cvEmpresa');
             $table->string('nbEmpresa');
             $table->integer('idTipoPersona');
             $table->string('desRFC');
