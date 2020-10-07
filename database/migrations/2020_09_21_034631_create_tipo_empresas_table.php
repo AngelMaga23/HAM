@@ -15,7 +15,6 @@ class CreateTipoEmpresasTable extends Migration
     {
         Schema::create('tipo_empresas', function (Blueprint $table) {
             $table->id();
-            $table->string('cvTipoEmpresa');
             $table->string('nbTipoEmpresa');
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HabitacionController extends Controller
 {
@@ -13,7 +14,12 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        //
+        $habitaciones = DB::table('habitacions as h')
+        ->select(DB::raw('h.nbPiso, h.numMaximoPersonas, e.id as idestatu, e.nbEstatus, e.tpEstatus'))
+        ->join('estatus as e','h.idEstatus','=','e.id')
+        ->get();
+
+        return $habitaciones;
     }
 
     /**

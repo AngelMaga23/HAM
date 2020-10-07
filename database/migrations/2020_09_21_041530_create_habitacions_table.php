@@ -15,7 +15,6 @@ class CreateHabitacionsTable extends Migration
     {
         Schema::create('habitacions', function (Blueprint $table) {
             $table->id();
-            $table->string('cvHabitacion');
             $table->string('nbPiso');
             $table->integer('numMaximoPersonas');
             $table->integer('idEstatus');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Area;
 
 class AreaController extends Controller
 {
@@ -13,7 +15,23 @@ class AreaController extends Controller
      */
     public function index()
     {
-        //
+        $areas = DB::table('areas as a')
+        ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
+        ->join('zonas as z','a.idZona','=','z.id')
+        ->get();
+        return $areas;
+    }
+
+    public function get_area($idzona){
+
+        $area = DB::table('areas as a')
+        ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
+        ->join('zonas as z','a.idZona','=','z.id')
+        ->where('z.id',$idzona)
+        ->get();
+
+        return $area;
+
     }
 
     /**
@@ -34,7 +52,43 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nombre_area' => 'required',
+            'imagen' => 'required|file',
+            'idzona' => 'required|integer',
+            'num_personas' => 'required|integer',
+            'fg_admite' => 'required|integer',
+        ]);
+
+        try {
+
+            $area = new Area();
+            if($request->hasFile('imagen')){
+
+                $file = $request->file('imagen');
+                $nameimg = time().$file->getClientOriginalName();
+                $file->move(public_path().'/images',$nameimg);
+            }
+    
+            $area->nbArea = $request->input('nombre_area');
+            $area->pathArchivo = $nameimg;
+            $area->idZona = $request->input('idzona');
+            $area->numPersonasPermitidas = $request->input('num_personas');
+            $area->fgAdmiteNinios = $request->input('fg_admite');
+    
+            $area->save();
+
+            return response()->json([
+                "message" => "Área guardada correctamente"
+            ]);
+            
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => $th
+            ]);
+        }
+
+
     }
 
     /**

@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('areas','AreaController@index');
+Route::get('area/{idzona}/show','AreaController@get_area');
+
+Route::get('zonas','ZonaController@index');
+
+Route::get('habitaciones','HabitacionController@index');
+
+Route::get('servicios','ServicioController@index');
+
+// Route::post('save_area','AreaController@store');

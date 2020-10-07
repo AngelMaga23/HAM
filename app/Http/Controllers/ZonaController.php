@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ZonaController extends Controller
 {
@@ -13,7 +14,12 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        //
+        $zonas = DB::table('zonas as z')
+        ->select(DB::raw('z.id as idzona, z.nbZona, z.pathArchivo,z.numPersonasPermitidasMax, e.nbEstatus, e.tpEstatus'))
+        ->join('estatus as e','z.idEstatus','=','e.id')
+        ->get();
+
+        return $zonas;
     }
 
     /**

@@ -15,7 +15,6 @@ class CreateEstatusTable extends Migration
     {
         Schema::create('estatus', function (Blueprint $table) {
             $table->id();
-            $table->string('cvEstatus');
             $table->string('nbEstatus');
             $table->string('tpEstatus');
             $table->timestamps();

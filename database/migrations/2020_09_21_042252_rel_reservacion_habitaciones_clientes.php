@@ -16,6 +16,7 @@ class RelReservacionHabitacionesClientes extends Migration
         Schema::create('rel_reserv_hab_clientes', function (Blueprint $table) {
             $table->id();
             $table->integer('idReservacion');
+            $table->string('pathArchivo');
             $table->integer('idCliente');
             $table->timestamps();
         });
