@@ -14,12 +14,37 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        $habitaciones = DB::table('habitacions as h')
-        ->select(DB::raw('h.nbPiso, h.numMaximoPersonas, e.id as idestatu, e.nbEstatus, e.tpEstatus'))
-        ->join('estatus as e','h.idEstatus','=','e.id')
-        ->get();
+        try {
 
-        return $habitaciones;
+            $habitaciones = DB::table('habitacions as h')
+            ->select(DB::raw('h.nbPiso, h.numMaximoPersonas, e.id as idestatu, e.nbEstatus, e.tpEstatus'))
+            ->join('estatus as e','h.idEstatus','=','e.id')
+            ->get();
+    
+            if(!$habitaciones->isEmpty()){
+                return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $habitaciones,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+            }else{
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $habitaciones,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+            }
+
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $habitaciones,
+                "Mensaje" => $th
+            ]);
+        }
+
+        // return $habitaciones;
     }
 
     /**
