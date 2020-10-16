@@ -40,7 +40,7 @@ class ZonaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                "Data" => $zonas,
+                // "Data" => $zonas,
                 "Mensaje" => $th
             ]);	
         }

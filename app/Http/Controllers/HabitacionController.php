@@ -39,7 +39,7 @@ class HabitacionController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                "Data" => $habitaciones,
+                // "Data" => $habitaciones,
                 "Mensaje" => $th
             ]);
         }

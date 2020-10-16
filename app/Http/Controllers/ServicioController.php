@@ -15,6 +15,7 @@ class ServicioController extends Controller
      */
     public function index()
     {
+
         try {
 
             $servicios = DB::table('servicios')->get();
@@ -37,7 +38,7 @@ class ServicioController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                "Data" => $servicios,
+                // "Data" => $servicios,
                 "Mensaje" => $th
             ]);
         }

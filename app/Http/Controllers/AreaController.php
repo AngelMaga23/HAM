@@ -42,7 +42,7 @@ class AreaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                "Data" => $areas,
+                // "Data" => $areas,
                 "Mensaje" => $th
             ]);
         }
@@ -78,7 +78,7 @@ class AreaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                "Data" => $area,
+                // "Data" => $area,
                 "Mensaje" => $th
             ]);
         }
