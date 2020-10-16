@@ -15,7 +15,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-
+        $areas = "";
         try {
 
             $areas = DB::table('areas as a')
@@ -42,7 +42,7 @@ class AreaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                // "Data" => $areas,
+                "Data" => $areas,
                 "Mensaje" => $th
             ]);
         }
@@ -52,7 +52,7 @@ class AreaController extends Controller
     }
 
     public function get_area($idzona){
-
+        $area = "";
         try {
 
             $area = DB::table('areas as a')
@@ -78,7 +78,7 @@ class AreaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                // "Data" => $area,
+                "Data" => $area,
                 "Mensaje" => $th
             ]);
         }

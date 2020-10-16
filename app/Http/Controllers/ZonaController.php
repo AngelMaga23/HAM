@@ -14,6 +14,7 @@ class ZonaController extends Controller
      */
     public function index()
     {
+        $zonas = "";
         try {
             $zonas = DB::table('zonas as z')
             ->select(DB::raw('z.id as idzona, z.nbZona, z.pathArchivo,z.numPersonasPermitidasMax, e.nbEstatus, e.tpEstatus'))
@@ -40,7 +41,7 @@ class ZonaController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                // "Data" => $zonas,
+                "Data" => $zonas,
                 "Mensaje" => $th
             ]);	
         }

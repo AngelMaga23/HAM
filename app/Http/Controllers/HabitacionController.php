@@ -14,6 +14,7 @@ class HabitacionController extends Controller
      */
     public function index()
     {
+        $habitaciones = "";
         try {
 
             $habitaciones = DB::table('habitacions as h')
@@ -39,7 +40,7 @@ class HabitacionController extends Controller
         } catch (\Throwable $th) {
             return response()->json([
                 "Estatus" => -1,
-                // "Data" => $habitaciones,
+                "Data" => $habitaciones,
                 "Mensaje" => $th
             ]);
         }
