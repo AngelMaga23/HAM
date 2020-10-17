@@ -15,22 +15,77 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = DB::table('areas as a')
-        ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
-        ->join('zonas as z','a.idZona','=','z.id')
-        ->get();
-        return $areas;
+        $areas = "";
+        try {
+
+            $areas = DB::table('areas as a')
+            ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
+            ->join('zonas as z','a.idZona','=','z.id')
+            ->get();
+
+            if(!$areas->isEmpty())
+            {
+                return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $areas,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+            }else{
+
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $areas,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $areas,
+                "Mensaje" => $th
+            ]);
+        }
+
+
+       
     }
 
     public function get_area($idzona){
+        $area = "";
+        try {
 
-        $area = DB::table('areas as a')
-        ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
-        ->join('zonas as z','a.idZona','=','z.id')
-        ->where('z.id',$idzona)
-        ->get();
+            $area = DB::table('areas as a')
+            ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
+            ->join('zonas as z','a.idZona','=','z.id')
+            ->where('z.id',$idzona)
+            ->get();
 
-        return $area;
+            if(!$area->isEmpty()){
+                return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $area,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+            }else{
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $area,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $area,
+                "Mensaje" => $th
+            ]);
+        }
+
+
+
+      
 
     }
 
@@ -70,11 +125,11 @@ class AreaController extends Controller
                 $file->move(public_path().'/images',$nameimg);
             }
     
-            $area->nbArea = $request->input('nombre_area');
+            $area->nbArea = $request->nombre_area;
             $area->pathArchivo = $nameimg;
-            $area->idZona = $request->input('idzona');
-            $area->numPersonasPermitidas = $request->input('num_personas');
-            $area->fgAdmiteNinios = $request->input('fg_admite');
+            $area->idZona = $request->idzona;
+            $area->numPersonasPermitidas = $request->num_personas;
+            $area->fgAdmiteNinios = $request->fg_admite;
     
             $area->save();
 

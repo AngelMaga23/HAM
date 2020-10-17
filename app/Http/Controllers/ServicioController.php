@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,9 +15,35 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $servicios = DB::table('servicios')->get();
+        $servicios = "";
+        try {
 
-        return $servicios;
+            $servicios = DB::table('servicios')->get();
+
+            if(!$servicios->isEmpty())
+            {
+               return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $servicios,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+            }else{
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $servicios,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+            }
+    
+        } catch (\Throwable $th) {
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $servicios,
+                "Mensaje" => $th
+            ]);
+        }
+
+
     }
 
     /**
