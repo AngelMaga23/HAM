@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->id();
             $table->string('nbArea');
             $table->string('pathArchivo');
+            $table->string('DesAreas',500);
             $table->integer('idZona');
             $table->integer('numPersonasPermitidas');
             $table->string('fgAdmiteNinios');

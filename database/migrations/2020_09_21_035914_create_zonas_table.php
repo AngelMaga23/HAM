@@ -17,6 +17,8 @@ class CreateZonasTable extends Migration
             $table->id();
             $table->string('nbZona');
             $table->string('pathArchivo');
+            $table->string('DesZonas',500);
+            $table->string('patimgZona');
             $table->integer('idEstatus');
             $table->integer('numPersonasPermitidasMax');
             $table->timestamps();

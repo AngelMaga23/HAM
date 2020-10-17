@@ -1,68 +1,13 @@
 <template>
-<div class="card catalogo-seccion">
-    <div class="card-header">
-        <div class="row">
-            <div class="col-md-10">
-                <h3>Reserva Habitación</h3>
-            </div>
-            <div style="text-align: right" class="col-md-2">
-                <button @click="MostrarModal()" class="btn btn-primary btn-block">
-                    Nuevo
-                </button>
-            </div>
-        </div>
-    </div>
-    <div>
-        <table class="table table-striped">
+<div class="col-md-12">
+            <div class="content-panel">
+              <h4> Reserva de habitacion </h4>
+              <hr>
+              <table-basic>
 
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>N° Reservación</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                   
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <Modal-component IdModal="Modal" size="modal-lg" titulo="Nuevo" :esnuevo="EsNuevo">
-        <template slot="formulario">
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Reservación</label>
-                <div class="col-sm-10">
-                    <select class="form-control form-control-lg">
-                        <option>Large select</option>
-                    </select>
-                </div>
+              </table-basic>
             </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Clientes</label>
-                <div class="col-sm-10">
-                    <select class="form-control form-control-lg">
-                        <option>Large select</option>
-                    </select>
-                </div>
-            </div>
-        </template>
-        <template slot="acciones"> </template>
-    </Modal-component>
-</div>
+          </div>
 </template>
 
 <script>
