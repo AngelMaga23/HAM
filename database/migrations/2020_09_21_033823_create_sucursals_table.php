@@ -22,6 +22,7 @@ class CreateSucursalsTable extends Migration
             $table->integer('idConfiguracion');
             $table->string('pathLogo');
             $table->integer('idGerenteGeneral');
+            $table->integer('idusuario');
             $table->timestamps();
         });
     }

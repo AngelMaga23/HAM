@@ -16,7 +16,7 @@ class CreatePictureAreas extends Migration
         Schema::create('picture_areas', function (Blueprint $table) {
             $table->id();
             $table->string('patImagen');
-            $table->interger('idareas');
+            $table->integer('idareas');
             $table->timestamps();
         });
     }

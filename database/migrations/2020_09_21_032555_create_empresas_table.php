@@ -26,6 +26,7 @@ class CreateEmpresasTable extends Migration
             $table->string('pathLogo');
             $table->integer('idDirectorGeneral');
             $table->integer('idTipoEmpresa');
+            $table->integer('idusuario');
             $table->timestamps();
         });
     }

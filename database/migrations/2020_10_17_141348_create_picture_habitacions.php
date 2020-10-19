@@ -16,7 +16,7 @@ class CreatePictureHabitacions extends Migration
         Schema::create('picture_habitacions', function (Blueprint $table) {
             $table->id();
             $table->string('patImagen');
-            $table->interger('idColeccionhabitacions');
+            $table->integer('idColeccionhabitacions');
             $table->timestamps();
         });
     }
