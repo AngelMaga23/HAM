@@ -1,19 +1,21 @@
 <template>
-<div class="col-md-12">
-            <div class="content-panel">
-              <h4> Reserva de habitacion </h4>
-              <hr>
-              <table-basic>
+  <form-basic>
+    <template slot="titulo">
+     Empleados
+    </template>
+    <template slot="formulario">
+      	 
+    </template>
 
-              </table-basic>
-            </div>
-          </div>
+  </form-basic>
 </template>
 
 <script>
 export default {
     data() {
-        return {};
+        return {
+
+        };
     },
     methods: {
         MostrarModal() {
@@ -25,7 +27,8 @@ export default {
             this.Nombre = "";
             this.IdEmpresaSucursal = "";
             this.IdDescartes = "";
-        },
-    },
+        }
+
+    }
 };
 </script>

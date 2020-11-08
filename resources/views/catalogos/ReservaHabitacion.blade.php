@@ -2,5 +2,5 @@
 
 
 @section('content')
-<empresa-component> </empresa-component>
+<reservahabitacion-component  > </reservahabitacion-component>
 @endsection

@@ -1,5 +1,5 @@
 <template>
-<div class="row mt">
+  <div class="row mt">
     <div class="col-lg-12">
         <h4>
             <slot name="titulo">
@@ -7,11 +7,10 @@
         </h4>
 
         <div class="form-panel">
-            <slot name="formulario">
+             <slot name="formulario">
 
             </slot>
         </div>
-        <!-- /form-panel -->
     </div>
-</div>
+  </div>
 </template>

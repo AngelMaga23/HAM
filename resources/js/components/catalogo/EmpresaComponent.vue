@@ -5,7 +5,6 @@
     </template>
     <template slot="formulario">
         <h4 class="mb"> Registro</h4>
-
         <form class="form-horizontal style-form" method="get">
             <div class="row">
                 <div class="col-md-6">
@@ -21,9 +20,7 @@
                             <input v-model="CorreoContacto" type="text" class="form-control">
                         </div>
                     </div>
-
-                </div>
-
+                </div> 
                 <div class="col-md-6">
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo Hotel</label>
@@ -34,9 +31,9 @@
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
-                            </select>
-                        </div>
-                    </div>
+                            </select>                   
+			</div>
+                    </div>	
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Persona</label>
                         <div class="col-sm-8">
@@ -48,10 +45,9 @@
                                 <option>5</option>
                             </select>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+	      </div>
             </div>
-
             <h4 class="mb"> Ubicacion</h4>
             <div class="row">
                 <div class="col-md-4">
@@ -76,8 +72,6 @@
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
                             </select>
                         </div>
                     </div>
@@ -185,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+	    </div>
         </form>
     </template>
 </form-basic>
