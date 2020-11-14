@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateZonasTable extends Migration
 {
     /**
-     * Run the migrations.
+    * Run the migrations.
      *
      * @return void
      */
@@ -18,7 +18,6 @@ class CreateZonasTable extends Migration
             $table->string('nbZona');
             $table->string('pathArchivo');
             $table->string('DesZonas',500);
-            $table->string('patimgZona');
             $table->integer('idEstatus');
             $table->integer('numPersonasPermitidasMax');
             $table->timestamps();

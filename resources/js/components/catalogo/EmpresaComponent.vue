@@ -26,11 +26,8 @@
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo Hotel</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>seleccciona</option>
+                                <option>hotel</option>
                             </select>                   
 			</div>
                     </div>	
@@ -38,11 +35,8 @@
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Persona</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>Moral</option>
+                                <option>Fisica</option>
                             </select>
                         </div>
                     </div> 
@@ -55,11 +49,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Pais</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>México</option>
                             </select>
                         </div>
                     </div>
@@ -69,9 +59,9 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Estado</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>Yucatan</option>
+                                <option>Tabasco</option>
+                                <option>Campeche</option>
                             </select>
                         </div>
                     </div>
@@ -81,11 +71,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Ciudad</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>Merida</option>
                             </select>
                         </div>
                     </div>
@@ -103,11 +89,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Codigo Postal</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>seleccionar</option>
                             </select>
                         </div>
                     </div>
@@ -120,11 +102,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Pais</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option>México</option>
                             </select>
                         </div>
                     </div>
@@ -134,7 +112,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Estado</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                                <option>Yucatan</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -148,7 +126,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Ciudad</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                                <option>Merida</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -170,7 +148,7 @@
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Codigo Postal</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                                <option>seleccionar</option>
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
@@ -179,6 +157,26 @@
                         </div>
                     </div>
                 </div>
+		<div class="col-md-4">
+		<input type="submit" class="btn btn-primary" value="Guardar">
+		<table-basic>
+		  <template slot="title">
+		       Lista de empreas
+		  </template>
+		  <template slot="thead">
+		      <th>Nombre</th>
+		      <th>Tipo</th>
+		      <th>Personas</th>
+		      <th>Acciones</th>
+		    </template>
+		    <template slot="tbody">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td><input type="submit" value="editar" class="btn btn-info"></td>
+		    </template>
+		</table-basic>
+		</div>
 	    </div>
         </form>
     </template>

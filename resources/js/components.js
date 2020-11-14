@@ -9,7 +9,8 @@ Vue.component('sucursal-component', require('./components/catalogo/SucursalCompo
 Vue.component('zona-component', require('./components/catalogo/ZonasComponent.vue').default);
 Vue.component('area-component', require('./components/catalogo/AreasComponent.vue').default);
 Vue.component('reservahabitacion-component', require('./components/modulos/ReservasHabitacionComponent.vue').default);
-Vue.component('habitacion-component',require('./components/catalogo/HabitacionesComponent.vue').default)
+Vue.component('estatus-component',require('./components/catalogo/EstatusComponent.vue').default);
+Vue.component('habitacion-component',require('./components/catalogo/HabitacionesComponent.vue').default);
 //diseños 
 
 Vue.component('table-basic', require('./components/plantillas/TableBasic.vue').default);

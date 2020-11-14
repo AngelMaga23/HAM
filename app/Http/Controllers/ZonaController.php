@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Zonas;
+
+use function GuzzleHttp\Promise\all;
 
 class ZonaController extends Controller
 {
@@ -117,5 +120,130 @@ class ZonaController extends Controller
     public function destroy($id)
     {
         //
+    }  
+    public function Listar(){ 
+        $Zona =zonas::all(); 
+        return $Zona;
+    }
+
+    public function Buscar($Id){
+
+        $Zonas = zonas::find($Id);
+        return $Zonas;
+
+    }
+
+    public function Eliminar(Request $Peticion){
+
+        $Json = $Peticion -> input('Json', null);
+
+        $ParametrosArray = json_decode($Json, true);
+
+        $Zonas = $this -> Buscar($ParametrosArray['IdCanal']);
+
+        $Zonas -> RegStatus = "false";
+
+        $Zonas -> save();
+
+        $Respuesta = array(
+            'status'        =>      'success',
+            'code'          =>      '200',
+            'message'       =>      'registro eliminado',
+            'Zonas'         =>       $Zonas
+        );
+
+        return response() -> json($Respuesta,$Respuesta['code']);
+
+    }
+
+    public function Actualizar(Request $Peticion){
+
+        $Json = $Peticion -> input('Json', null);
+
+        $ParametrosArray = json_decode($Json, true);
+
+        $Zonas = $this -> Buscar($ParametrosArray['IdCanal']);
+
+        $Validacion = \Validator::make($Zonas,[
+            'Nombre'                =>      'required',
+          //  'IdEmpresaSucursal'     =>      'required'
+        ]);
+
+        if($Validacion -> fails()){
+
+            $Respuesta = array(
+                'status'        =>      'error',
+                'code'          =>      '500',
+                'message'       =>      'Error de validacion',
+                'errors'        =>      $Validacion -> errors()
+            );
+
+        } else {
+
+            //se obtiene el id de la sucursal con el usuario admin logeado
+	    $Zonas -> nbZona = $ParametrosArray['nbZona'];
+            $Zonas -> DesZonas = $ParametrosArray['DesZonas'];
+	    $Zonas-> numPersonasPermitidasMax=$ParametrosArray['numPersonasPermitidasMax'];
+            $Zonas -> pathArchivo=$ParametrosArray['pathArchivo'] ;
+            $Zonas -> save();
+
+            $Respuesta = array(
+                'status'        =>      'success',
+                'code'          =>      '200',
+                'message'       =>      'registro modificado',
+                'zonas'         =>      $Zonas
+            );
+
+        }
+
+        return response() -> json($Respuesta,$Respuesta['code']);
+
+    }
+
+    public function Agregar(Request $Peticion){
+
+        $Json = $Peticion -> input('Json', null);
+
+        $ParametrosArray = json_decode($Json, true);
+
+        $Validacion = \Validator::make($ParametrosArray,[
+            'nbZona'                =>      'required',
+        ]);
+
+        if($Validacion -> fails()){
+
+            $Respuesta = array( 
+                'status'        =>      'error',
+                'code'          =>      '500',
+                'message'       =>      'Error de validacion',
+              'errors'        =>      $Validacion -> errors()
+            );
+
+        } else {
+
+            /*se obtiene el id de la sucursal con el usuario admin logeado
+            $IdSucursal = auth()->user('web')->IdEmpresaSucursal;
+
+	    $EmpresaSucursal = EmpresaSucursal::find($IdSucursal);*/
+            $Zona = new zonas();
+
+            $Zona -> Nombre = $ParametrosArray['Nombre'];
+            $Zona -> DesZonas = $ParametrosArray['DesZonas'];
+	    $Zona -> numPersonasPermitidasMax=$ParametrosArray['numPersonasPermitidasMax'];
+            $Zona -> pathArchivo=$ParametrosArray['pathArchivo'] ;
+
+            $Zona -> save();
+
+            $Respuesta = array(
+                'status'        =>      'success',
+                'code'          =>      '200',
+                'message'       =>      'registro guardado',
+                'canal'         =>      $Zona
+            );
+
+        }
+
+        return response() -> json($Respuesta,$Respuesta['code']);
+
     }
 }

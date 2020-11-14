@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-12">
             <div class="content-panel">
-              <h4><i class="fa fa-angle-right"></i> Responsive Table</h4>
+              <h4><i class="fa fa-angle-right"></i> responsive table</h4>
               <section id="unseen">
                 <table class="table table-bordered table-striped table-condensed">
                   <thead>

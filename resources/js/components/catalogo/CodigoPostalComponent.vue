@@ -1,7 +1,7 @@
 <template>
   <form-basic>
     <template slot="titulo">
-      Reservas
+     Codigo postales 
     </template>
     <template slot="formulario">
       	 

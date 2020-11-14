@@ -65,6 +65,7 @@
 	    <div class="col-md-6">
 	    </div>
 	</form>
+       <input type="submit" class="btn btn-primary" value="Registrar">
     </template>
 </form-basic> 
 </template>

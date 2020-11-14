@@ -42,62 +42,45 @@
     </header>
     <aside>
         <div id="sidebar" class="nav-collapse ">
-          <!-- sidebar menu start-->
-          <ul class="sidebar-menu" id="nav-accordion">
-            <li class="mt">
-              <a href="{{ route('areas') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Areas</span>
+	  <!-- sidebar menu start-->
+	  <ul class="sidebar-menu" id="nav-accordion">
+	    <li class="mt">
+	      <a href="{{route('reservahabitacion')}}">
+	       <i class="fa fa-dashboard"></i>
+                <span>Registro</span>
                 </a>
-            </li>
+	    </li>
+            
             <li class="mt">
               <a href="{{ route('empresa') }}">
                 <i class="fa fa-dashboard"></i>
                 <span>Empresa</span>
-                </a
-            </li>
+              </a> 
+	    </li>
             <li class="mt">
-              <a href="{{ route('habitaciones') }}">
+               <a  href="{{ route('habitaciones') }}">
                 <i class="fa fa-dashboard"></i>
                 <span>Habitaciones</span>
-                </a>
+               </a>
             </li>
-            <li class="mt">
-              <a href="{{ route('empresa') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Proveedores</span>
-                </a>
-            </li>
-            <li class="mt">
-              <a href="{{ route('empresa') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Registro</span>
-                </a>
-            </li>
-            <li class="mt">
-              <a href="{{ route('reservahabitacion') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Reserva habitacion</span>
-                </a>
-            </li>
-            <li class="mt">
-              <a href="{{ route('empresa') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Servicios</span>
-                </a>
-            </li>
-            <li class="mt">
-              <a href="{{ route('empresa') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Sucursal</span>
-                </a>
-            </li>
-            <li class="mt">
+          <li class="mt">
               <a href="{{ route('zonas') }}">
                 <i class="fa fa-dashboard"></i>
                 <span>Zona</span>
                 </a>
-            </li>
+	    </li>
+	  <li class="mt">
+              <a href="{{ route('areas') }}">
+                <i class="fa fa-dashboard"></i>
+                <span>Areas</span>
+                </a>
+	    </li>
+	  <li class="mt">
+              <a href="{{ route('estatus') }}">
+                <i class="fa fa-dashboard"></i>
+		  <span>Estatus</span>
+	      </a>
+          </li> 
           </ul>
           <!-- sidebar menu end-->
         </div>

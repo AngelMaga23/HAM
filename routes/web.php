@@ -20,24 +20,34 @@ Route::get('/', function () {
 Route::get('empresa', function(){
     return view('catalogos/Empresa');
 })->name('empresa');
+
 Route::get('areas', function(){
     return view('catalogos/Areas');
 })->name('areas');
 Route::get('Empleados', function(){
     return view('catalogos/Empleados');
 })->name('empleados');
+
 Route::get('habitaciones', function(){
     return view('catalogos/Habitaciones');
 })->name('habitaciones');
+
 Route::get('ReservaHabitacion', function(){
     return view('catalogos/ReservaHabitacion');
 })->name('reservahabitacion');
+
 Route::get('Zonas', function(){
     return view('catalogos/Zonas');
 })->name('zonas');
+
 Route::get('Servicios', function(){
     return view('catalogos/Servicios');
 })->name('servicios');
+
+Route::get('Estatus', function(){
+    return view('catalogos/Estatus');
+})->name('estatus');
+
 
 Auth::routes();
 

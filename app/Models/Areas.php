@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CodigoPostal extends Model
+class Areas extends Model
 {
     //
 }

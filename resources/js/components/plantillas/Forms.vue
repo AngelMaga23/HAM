@@ -1,5 +1,4 @@
 <template>
-  <div class="row mt">
     <div class="col-lg-12">
         <h4>
             <slot name="titulo">
@@ -12,5 +11,4 @@
             </slot>
         </div>
     </div>
-  </div>
 </template>
