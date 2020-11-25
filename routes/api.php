@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+ 
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,16 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('login', 'AuthApiController@login');
-Route::post('signup', 'AuthApiController@signUp');
+Route::post('login', 'Api\AuthApiController@login');
+Route::post('signup', 'Api\AuthApiController@signUp');
 
-Route::get('areas','AreaController@index');
-Route::get('area/{idzona}/show','AreaController@get_area');
+Route::get('areas','Api\AreaController@index');
+Route::get('area/{idzona}/show','Api\AreaController@get_area');
 
-Route::get('zonas','ZonaController@index');
+Route::get('zonas','Api\ZonaController@index');
 
-Route::get('habitaciones','HabitacionController@index');
+Route::get('habitaciones','Api\HabitacionController@index');
 
-Route::get('servicios','ServicioController@index');
+Route::get('servicios','Api\ServicioController@index');
 
 // Route::post('save_area','AreaController@store');

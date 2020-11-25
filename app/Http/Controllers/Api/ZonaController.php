@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Area;
 
-class AreaController extends Controller
+class ZonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,41 @@ class AreaController extends Controller
      */
     public function index()
     {
-       
-    }
+        $zonas = "";
+        try {
 
+            $zonas = DB::table('zonas as z')
+            ->select(DB::raw('z.id as idzona, z.nbZona,z.DesZonas, z.pathArchivo,z.numPersonasPermitidasMax, e.nbEstatus, e.tpEstatus, count(a.idZona) as cantAreas'))
+            ->join('estatus as e','z.idEstatus','=','e.id')
+            ->leftJoin('areas as a','z.id','=','a.idZona')
+            ->groupBy('a.idZona')
+            ->get();
+
+            if(!$zonas->isEmpty())
+            {
+                return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $zonas,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+
+            }else{
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $zonas,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $zonas,
+                "Mensaje" => $th
+            ]);	
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,43 +69,7 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nombre_area' => 'required',
-            'imagen' => 'required|file',
-            'idzona' => 'required|integer',
-            'num_personas' => 'required|integer',
-            'fg_admite' => 'required|integer',
-        ]);
-
-        try {
-
-            $area = new Area();
-            if($request->hasFile('imagen')){
-
-                $file = $request->file('imagen');
-                $nameimg = time().$file->getClientOriginalName();
-                $file->move(public_path().'/images',$nameimg);
-            }
-    
-            $area->nbArea = $request->nombre_area;
-            $area->pathArchivo = $nameimg;
-            $area->idZona = $request->idzona;
-            $area->numPersonasPermitidas = $request->num_personas;
-            $area->fgAdmiteNinios = $request->fg_admite;
-    
-            $area->save();
-
-            return response()->json([
-                "message" => "Área guardada correctamente"
-            ]);
-            
-        } catch (\Throwable $th) {
-            return response()->json([
-                "message" => $th
-            ]);
-        }
-
-
+        //
     }
 
     /**

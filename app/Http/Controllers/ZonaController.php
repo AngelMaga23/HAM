@@ -17,42 +17,6 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        $zonas = "";
-        try {
-
-            $zonas = DB::table('zonas as z')
-            ->select(DB::raw('z.id as idzona, z.nbZona,z.DesZonas, z.pathArchivo,z.numPersonasPermitidasMax, e.nbEstatus, e.tpEstatus, count(a.idZona) as cantAreas'))
-            ->join('estatus as e','z.idEstatus','=','e.id')
-            ->leftJoin('areas as a','z.id','=','a.idZona')
-            ->groupBy('a.idZona')
-            ->get();
-
-            if(!$zonas->isEmpty())
-            {
-                return response()->json([
-                    "Estatus" => 1,
-                    "Data" => $zonas,
-                    "Mensaje" => "Operación realizada con éxito"
-                ]);
-
-            }else{
-                return response()->json([
-                    "Estatus" => 0,
-                    "Data" => $zonas,
-                    "Mensaje" => "No se encontraron elementos"
-                ]);
-
-            }
-
-        } catch (\Throwable $th) {
-            return response()->json([
-                "Estatus" => -1,
-                "Data" => $zonas,
-                "Mensaje" => $th
-            ]);	
-        }
-
-
     
     }
 
