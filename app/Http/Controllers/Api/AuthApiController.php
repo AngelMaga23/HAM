@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -42,7 +42,9 @@ class AuthApiController extends Controller
 
         if (!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
+                "Estatus" => 0,
+                "Data" => [],
+                "Mensaje" => "Usuario No encontrado"
             ], 401);
 
         $user = $request->user();
@@ -54,9 +56,13 @@ class AuthApiController extends Controller
         $token->save();
 
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
+            "Estatus" => 1,
+            "Data" => $user,
+            "Mensaje" => "Operación realizada con éxito"
+            // 'access_token' => $tokenResult->accessToken,
+            // 'token_type' => 'Bearer',
+            // 'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
+            // 'user' => $user
         ]);
     }
     public function logout(Request $request)
