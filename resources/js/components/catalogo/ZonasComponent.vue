@@ -14,15 +14,10 @@
 	  <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Descripción</label>
               <div class="col-sm-8">
-	      <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+	      <textarea v-model="DesZonas" name="" id="" cols="30" rows="3" class="form-control"></textarea>
               </div>
           </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Imagen</label>
-              <div class="col-sm-8">
-                <input type="file" class="form-control" accept="image/*" @change="VerImg"/>
-              </div>
-          </div>
+         
 	  <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Personas permitidas</label>
               <div class="col-sm-8">
@@ -31,27 +26,27 @@
           </div>
 	  <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Estatus</label>
-              <div class="col-sm-8"> 
-                <input v-model="idEstatus" type="text" class="form-control" value="Lleno" disabled>
+              <div class="col-sm-8">
+                            <select v-model="idEstatus" class="form-control" id="exampleFormControlSelect1">
+                                <option>Libre</option> 
+                            </select>
               </div>
           </div>
        </div>
-      <div class="col-md-3" >
-      <br>
-      <br>
-	    <img v-if="url" :src="url" width="60%" style="border-style:solid"/>
+      <div class="col-md-6" >
+	<input type="file" @ accept="image/png, image/jpeg, image/gif"/>
+
+	  <br>
+	  <button class="btn btn-success">Guardar</button>
       </div>
       <div class="col-md-3 center" >
-      <br>
-      <br>
-      <br>
-      <input type="submit" class="btn btn-primary btn-lg" value="Guardar">
-      </div>
+	
+                 </div>
 	  <table-basic>
 	      <template slot="thead">
 		<th>Nombre</th>
 		<th>Descripción</th>
-		<th>Personas permitidas</th>
+		<th>Personas permitidas</th> 
 		<th>Acciones</th>
 	      </template>
 	      <template slot="tbody">
@@ -67,7 +62,7 @@
 
   </form-basic>
 
-</template>
+</template> 
 
 <script>
 export default {
@@ -85,6 +80,7 @@ export default {
         };
     },
     methods: {
+	
         LimpiarCampos() {
             this.nbZona= "";
             this.idEstatus = "";
@@ -93,16 +89,32 @@ export default {
 	Listar(){
 	  axios.get("api/zonas").then(Respuesta=>{this.Zonas=Respuesta.data;});
 	},
-	Agregar(){
- 
+	Save(){
+	  let json={
+	     nbZona:this.nbZona,
+	     numPersonasPermitidasMax:this.numPersonasPermitidasMax,
+	     DesZonas:this.DesZonas,
+	     pathArchivo:this.file
+	  };
+	  axios.post("api/zonas/save",{Json :JSON.stringify(json)})
+	    .then(Respuesta=>{
+	      this.EsNuevo=true;
+	      this.LimpiarCampos();
+	      this.Listar();
+	      }).catch(error=>{
+		  if(error.response.status==500){
+		    this.Errores=error.response.data.errors;
+		  }
+		});
 	},
 	VerImg(e){
 	  const file=e.target.files[0];
-	  this.url=URL.createObjectURL(file); 
-	}
-      },
+	  this.url=URL.createObjectURL(file);
+	},
+    },
     created(){
       this.Listar();
-    }
-};
+    },
+
+}
 </script>

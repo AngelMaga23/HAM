@@ -5,7 +5,6 @@
     </template>
     <template slot="formulario">
         <h4 class="mb"> Registro</h4>
-        <form class="form-horizontal style-form" method="get">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group row">
@@ -157,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-		<div class="col-md-4">
+		<div class="col-md-12">
 		<input type="submit" class="btn btn-primary" value="Guardar">
 		<table-basic>
 		  <template slot="title">
@@ -165,20 +164,22 @@
 		  </template>
 		  <template slot="thead">
 		      <th>Nombre</th>
-		      <th>Tipo</th>
+		      <th>Dirección</th>
+		      <th>Dirección fiscal</th>
+		      <th>Tipo empresa</th>
 		      <th>Personas</th>
 		      <th>Acciones</th>
+		      
 		    </template>
 		    <template slot="tbody">
-			<td></td>
-			<td></td>
-			<td></td>
+			<tr >
+
+			</tr>	
 			<td><input type="submit" value="editar" class="btn btn-info"></td>
 		    </template>
 		</table-basic>
 		</div>
 	    </div>
-        </form>
     </template>
 </form-basic>
 </template>
