@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Zonas;
+use App\Http\Controllers\Controller;
 
 use function GuzzleHttp\Promise\all;
 
@@ -84,7 +85,9 @@ class ZonaController extends Controller
     public function destroy($id)
     {
         //
-    }  
+    } 
+
+   // function web 
     public function Listar(){ 
         $Zona =zonas::all(); 
         return $Zona;
@@ -163,6 +166,17 @@ class ZonaController extends Controller
         return response() -> json($Respuesta,$Respuesta['code']);
 
     }
+    public function saveimg(Request $request){
+	 /*   if($request->hasFile('pathArchivo')){
+	    $file=$request ->file('pathArchivo');
+	    $name = time().$file->getClientOriginalName();
+	    $file->move(public_path().'/img/',$name); 
+	    return $name; 
+	  }
+	  */
+      return $request;
+
+    }
 
     public function Agregar(Request $Peticion){
 
@@ -183,13 +197,9 @@ class ZonaController extends Controller
               'errors'        =>      $Validacion -> errors()
             );
 
-        } else {
-
-            /*se obtiene el id de la sucursal con el usuario admin logeado
-            $IdSucursal = auth()->user('web')->IdEmpresaSucursal;
-
-	    $EmpresaSucursal = EmpresaSucursal::find($IdSucursal);*/
-            $Zona = new zonas();
+	} else {
+	
+         /*   $Zona = new zonas();
 
             $Zona -> Nombre = $ParametrosArray['Nombre'];
             $Zona -> DesZonas = $ParametrosArray['DesZonas'];
@@ -204,10 +214,10 @@ class ZonaController extends Controller
                 'message'       =>      'registro guardado',
                 'canal'         =>      $Zona
             );
-
+	  */
         }
 
-        return response() -> json($Respuesta,$Respuesta['code']);
-
+       /* return response() -> json($Respuesta,$Respuesta['code']);*/
+	return $Peticion;
     }
 }

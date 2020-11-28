@@ -16,9 +16,11 @@
   <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <!--external css-->
   <link href="{{ asset('lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" rel="stylesheet">
+  <!--filepond-->    
+  <!--fileinput -->
 
 </head>
 <body>
@@ -44,25 +46,13 @@
         <div id="sidebar" class="nav-collapse ">
 	  <!-- sidebar menu start-->
 	  <ul class="sidebar-menu" id="nav-accordion">
-	    <li class="mt">
-	      <a href="{{route('reservahabitacion')}}">
-	       <i class="fa fa-dashboard"></i>
-                <span>Registro</span>
-                </a>
-	    </li>
-            
             <li class="mt">
               <a href="{{ route('empresa') }}">
                 <i class="fa fa-dashboard"></i>
                 <span>Empresa</span>
               </a> 
 	    </li>
-            <li class="mt">
-               <a  href="{{ route('habitaciones') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Habitaciones</span>
-               </a>
-            </li>
+           
           <li class="mt">
               <a href="{{ route('zonas') }}">
                 <i class="fa fa-dashboard"></i>
@@ -80,6 +70,12 @@
                 <i class="fa fa-dashboard"></i>
 		  <span>Estatus</span>
 	      </a>
+	  </li>
+	  <li class="mt">
+              <a href="{{ route('notifservi') }}">
+                <i class="fa fa-dashboard"></i>
+		  <span>Notifi-Servicios</span>
+	      </a>
           </li> 
           </ul>
           <!-- sidebar menu end-->
@@ -87,9 +83,7 @@
     </aside>
     <section id="main-content">
         <section id="app" class="wrapper">
-            
                @yield('content')
-            
         </section>
       </section>
     </section>
@@ -102,6 +96,7 @@
   <!--common script for all pages-->
   <script src="{{ asset('lib/common-scripts.js')}}"></script>
   <!--script for this page-->
-    <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="sweetalert2.all.min.js"></script>
 </body>
 </html>

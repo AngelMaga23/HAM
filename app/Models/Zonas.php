@@ -14,7 +14,6 @@ class Zonas extends Model
         'nbZona',
 	'pathArchivo',
 	'DesZonas',
-	'patimgZona',
 	'idEstatus',
 	'numPersonasPermitidasMax'
     ];

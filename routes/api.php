@@ -33,3 +33,7 @@ Route::get('habitaciones','Api\HabitacionController@index');
 Route::get('servicios','Api\ServicioController@index');
 
 // Route::post('save_area','AreaController@store');
+
+
+
+
