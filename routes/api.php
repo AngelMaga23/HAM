@@ -32,8 +32,9 @@ Route::get('habitaciones','Api\HabitacionController@index');
 
 Route::get('servicios','Api\ServicioController@index');
 
+Route::post('reser_register','Api\ReservacionController@store');
+Route::post('show_register/{id}','Api\ReservacionController@show');
+
+Route::post('reser_ocupado','Api\ReservacionController@update_ocupado');
+Route::post('reser_finzalizado','Api\ReservacionController@update_finalizado');
 // Route::post('save_area','AreaController@store');
-
-
-
-
