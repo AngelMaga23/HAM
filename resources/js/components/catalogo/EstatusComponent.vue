@@ -70,14 +70,14 @@
 	      this.tpEstatus="";
 	  },
 	  Listar(){
-	    axios.get("api/estatus").then(Respuesta=>{this.Estatus=Respuesta.data});
+	    axios.get("web/estatus").then(Respuesta=>{this.Estatus=Respuesta.data});
 	  },
 	  Save(){
 	    let json={
 		nbEstatus:this.nbEstatus,
 		tpEstatus:this.tpEstatus 
 	    };
-	    axios.post("api/estatus/save",{Json:JSON.stringify(json)})
+	    axios.post("web/estatus/save",{Json:JSON.stringify(json)})
 	      .then(Respuesta=>{
 		   this.Listar();
 		   this.LimpiarCampos();
@@ -88,7 +88,7 @@
 		    });
 	  },
 	  Search(id){
-	    axios.get("api/estatus/"+id).then(Respuesta=>{
+	    axios.get("web/estatus/"+id).then(Respuesta=>{
 		  this.EsNuevo=false;
 		  this.nbEstatus=Respuesta.data.nbEstatus;
 		  this.tpEstatus=Respuesta.data.tpEstatus;
@@ -100,7 +100,7 @@
 		nbEstatus:this.nbEstatus,
 		tpEstatus:this.tpEstatus
 	    };
-	    axios.post("api/estatus/update",{Json:JSON.stringify(json)})
+	    axios.post("web/estatus/update",{Json:JSON.stringify(json)})
 	      .then(Respuesta=>{
 		    this.EsNuevo=true;
 		    this.LimpiarCampos();
@@ -121,7 +121,7 @@
 		      let json ={
 			id:id
 		      };
-		      axios.post("api/estatus/delete",{Json:JSON.stringify(json)})
+		      axios.post("web/estatus/delete",{Json:JSON.stringify(json)})
 			.then(Respuesta=>{
 			    swal("Hecho!","Eliminado","success");
 			    this.Listar();

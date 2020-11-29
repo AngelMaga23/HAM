@@ -76,7 +76,13 @@
                 <i class="fa fa-dashboard"></i>
 		  <span>Notifi-Servicios</span>
 	      </a>
-          </li> 
+	  </li>
+	  <li class="mt">
+              <a href="{{ route('notifrecord') }}">
+                <i class="fa fa-dashboard"></i>
+		  <span>Notifi-Reserva</span>
+	      </a>
+          </li>
           </ul>
           <!-- sidebar menu end-->
         </div>

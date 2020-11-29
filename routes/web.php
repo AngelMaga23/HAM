@@ -56,10 +56,10 @@ Route::get('/home', 'HomeController@index')->name('home');
   })->name('zonas');
 //Crud
     //get
-Route::get('api/zonas','ZonaController@Listar');
+Route::get('web/zonas','ZonaController@Listar');
     //post
-Route::post('api/zonas/save','ZonaController@Agregar');
-Route::post('api/save','ZonaController@saveimg');
+Route::post('web/zonas/save','ZonaController@Agregar');
+Route::post('web/save','ZonaController@saveimg');
 
 //Rutas Areas
 
@@ -71,12 +71,12 @@ Route::get('Estatus', function(){
 })->name('estatus');
 //Crud
 //get
-Route::get('api/estatus','EstatuController@Listar');
-Route::get('api/estatus/{id}','EstatuController@Buscar');
+Route::get('web/estatus','EstatuController@Listar');
+Route::get('web/estatus/{id}','EstatuController@Buscar');
 //post
-Route::post('api/estatus/save','EstatuController@Agregar');
-Route::post('api/estatus/delete','EstatuController@Eliminar');
-Route::post('api/estatus/update','EstatuController@Actualizar');
+Route::post('web/estatus/save','EstatuController@Agregar');
+Route::post('web/estatus/delete','EstatuController@Eliminar');
+Route::post('web/estatus/update','EstatuController@Actualizar');
 
 //Rutas notifservi
 //vistas
@@ -84,11 +84,15 @@ Route::get('notifservi', function(){
     return view('catalogos/NotifServi');
 })->name('notifservi');
 
-Route::get('api/notifservi','NotificacionController@ListarServ');
-Route::get('api/notifservi/{id}','NotificacionController@BuscarServ');
-Route::get('api/notip','NotificacionController@Listartipn');
+Route::get('notifrecord',function(){
+  return view('catalogos/NotifRecord');
+})->name('notifrecord'); 
 
-Route::post('api/notifservi/save','NotificacionController@SaveServ');
+Route::get('web/notifservi','NotificacionController@ListarServ');
+Route::get('web/notifservi/{id}','NotificacionController@BuscarServ');
+Route::get('web/notip','NotificacionController@Listartipn');
+
+Route::post('web/notifservi/save','NotificacionController@SaveServ');
 
 
 

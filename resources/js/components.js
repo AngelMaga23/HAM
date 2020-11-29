@@ -1,4 +1,4 @@
-
+Vue.component('notifrec-component', require('./components/catalogo/NotifiRecordComponent.vue').default);
 Vue.component('notifservi-component', require('./components/catalogo/NotifServiComponent.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);

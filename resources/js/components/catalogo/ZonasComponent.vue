@@ -87,7 +87,7 @@ export default {
             this.numPersonasPermitidasMax= "";
         },
 	Listar(){
-	  axios.get("api/zonas").then(Respuesta=>{this.Zonas=Respuesta.data;});
+	  axios.get("web/zonas").then(Respuesta=>{this.Zonas=Respuesta.data;});
 	},
 	Save(){
 	  let json={
@@ -96,7 +96,7 @@ export default {
 	     DesZonas:this.DesZonas,
 	     pathArchivo:this.file
 	  };
-	  axios.post("api/zonas/save",{Json :JSON.stringify(json)})
+	  axios.post("web/zonas/save",{Json :JSON.stringify(json)})
 	    .then(Respuesta=>{
 	      this.EsNuevo=true;
 	      this.LimpiarCampos();
