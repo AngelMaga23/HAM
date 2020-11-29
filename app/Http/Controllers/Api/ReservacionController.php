@@ -128,7 +128,7 @@ class ReservacionController extends Controller
         try {
 
             $reservaciones = DB::table('reservaciones as r')
-                ->select(DB::raw('r.id as idreservacion,r.feReservacion,r.tpReservacion,a.nbArea,a.pathArchivo,a.DesAreas,r.numPersonas,r.Estatus,f.feRegistro'))
+                ->select(DB::raw('r.id as idreservacion,r.feReservacion,r.tpReservacion,a.nbArea,a.pathArchivo,a.DesAreas,r.numPersonas,r.Estatus,r.feRegistro'))
                 ->join('areas as a','r.idDiscriminador','=','a.id')
                 ->where('r.idUsuario',$id)
                 ->get();
