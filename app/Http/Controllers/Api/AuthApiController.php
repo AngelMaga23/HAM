@@ -41,29 +41,34 @@ class AuthApiController extends Controller
         $credentials = request(['email', 'password']);
 
         if (!Auth::attempt($credentials))
+        {
             return response()->json([
                 "Estatus" => 0,
                 "Data" => [],
                 "Mensaje" => "Usuario No encontrado"
             ], 401);
+        }else{
+            $user = $request->user();
+            // $tokenResult = $user->createToken('Personal Access Token');
+    
+            // $token = $tokenResult->token;
+            // if ($request->remember_me)
+            //     $token->expires_at = Carbon::now()->addWeeks(1);
+            // $token->save();
+    
+            return response()->json([
+                "Estatus" => 1,
+                "Data" => $user,
+                "Mensaje" => "Operación realizada con éxito"
+                // 'access_token' => $tokenResult->accessToken,
+                // 'token_type' => 'Bearer',
+                // 'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
+                // 'user' => $user
+            ]);
+        }
 
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
 
-        $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
 
-        return response()->json([
-            "Estatus" => 1,
-            "Data" => $user,
-            "Mensaje" => "Operación realizada con éxito"
-            // 'access_token' => $tokenResult->accessToken,
-            // 'token_type' => 'Bearer',
-            // 'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString(),
-            // 'user' => $user
-        ]);
     }
     public function logout(Request $request)
     {
