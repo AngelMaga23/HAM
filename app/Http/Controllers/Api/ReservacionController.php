@@ -131,6 +131,7 @@ class ReservacionController extends Controller
                 ->select(DB::raw('r.id as idreservacion,r.feReservacion,r.tpReservacion,a.nbArea,a.pathArchivo,a.DesAreas,r.numPersonas,r.Estatus,r.feRegistro'))
                 ->join('areas as a','r.idDiscriminador','=','a.id')
                 ->where('r.idUsuario',$id)
+                ->orderBy('r.id')
                 ->get();
 
             if(!$reservaciones->isEmpty())
@@ -140,6 +141,7 @@ class ReservacionController extends Controller
                     "Data" => $reservaciones,
                     "Mensaje" => "Operación realizada con éxito"
                 ]);
+
             }else{
                 return response()->json([
                     "Estatus" => 0,

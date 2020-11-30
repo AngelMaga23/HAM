@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class AuthApiController extends Controller
 {
@@ -82,4 +83,47 @@ class AuthApiController extends Controller
     {
         return response()->json($request->user());
     }
+
+    public function Save_token(Request $request)
+    {
+        $token = $request->token;
+        $iduser = $request->iduser;
+
+        $token_user = DB::table('token_user')
+                        ->where('iduser',$iduser)
+                        ->where('token',$token)
+                        ->get();
+        
+        if(!$token_user->isEmpty())
+        {
+            return response()->json([
+                "Estatus" => 1,
+                "Data" => $token_user[0]->token,
+                "Mensaje" => "Operación realizada con éxito"
+            ]);
+
+        }else{
+
+            DB::table('token_user')->insert([
+                "iduser" => $iduser, "token" => $token
+            ]);
+
+            $token_user = DB::table('token_user')
+                ->where('iduser',$iduser)
+                ->where('token',$token)
+                ->get();
+
+            return response()->json([
+                "Estatus" => 1,
+                "Data" => $token_user[0]->token,
+                "Mensaje" => "Operación realizada con éxito"
+            ]);
+
+        }
+
+
+
+    }
+
+
 }

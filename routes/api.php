@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Api\AuthApiController@login');
 Route::post('signup', 'Api\AuthApiController@signUp');
+Route::post('save_token', 'Api\AuthApiController@Save_token');
 
 Route::get('areas','Api\AreaController@index');
 Route::get('area/{idzona}/show','Api\AreaController@get_area');
@@ -38,3 +39,5 @@ Route::post('show_register/{id}','Api\ReservacionController@show');
 Route::post('reser_ocupado','Api\ReservacionController@update_ocupado');
 Route::post('reser_finzalizado','Api\ReservacionController@update_finalizado');
 // Route::post('save_area','AreaController@store');
+
+Route::post('show_notifications/{id}','Api\NotificacionController@show');
