@@ -4,8 +4,9 @@ use Illuminate\Http\Request;
 
 use App\Models\TipoNotificacion;
 use App\Models\Usuario;
-use App\Http\Controllers\Controller;
 use App\Models\Notificaciones;
+
+use App\Http\Controllers\Controller;
 
 use Carbon\Carbon;
 use Illuminate\Notifications\Notification;
@@ -25,11 +26,31 @@ class NotificacionController extends Controller
       $not=Notificaciones::find($id);
       return $not;
     }
+    public function ListarNotiRec(){
+      $not =Notificaciones::where([
+	    ['idtipoNotificacion','=','2']
+      ])->get();
+      return $not;
+    }
     public function ListarUser(){
       $user = Usuario::where([
             ['Estatus', '=','Activo']
         ])->get();
         return $user;
+    }
+    public function SaveRecor(Request $request){
+      foreach ($request['id'] as $ids){
+        $date=Carbon::Now();
+	$Notif =new Notificaciones();
+	    $Notif -> titulo= $request['titulo'];
+            $Notif -> descripcion=$request['descripcion'];
+	    $Notif -> fechaEvento =$request['fechaEvento'];
+	    $Notif -> fechaRegistro= $date->toDateTimeString();
+	    $Notif -> idtipoNotificacion=2; 	    
+	$Notif -> idUsuario=$ids;
+	$Notif->save() ;
+		
+      }
     }
     public function SaveServ(Request $request){
         $Json = $request -> input('Json', null);

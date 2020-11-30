@@ -14,9 +14,5 @@ class TipoNotificacion extends Model
     ];
 
     public $timestamps = false;
-    
-/*    public function Notificacion(){
-      return $this ->hasMany(Notificacion::class,'id'); 
-}*/
 
 }

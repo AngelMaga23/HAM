@@ -2477,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
     Listar: function Listar() {
       var _this = this;
 
-      axios.get("api/estatus").then(function (Respuesta) {
+      axios.get("web/estatus").then(function (Respuesta) {
         _this.Estatus = Respuesta.data;
       });
     },
@@ -2488,7 +2488,7 @@ __webpack_require__.r(__webpack_exports__);
         nbEstatus: this.nbEstatus,
         tpEstatus: this.tpEstatus
       };
-      axios.post("api/estatus/save", {
+      axios.post("web/estatus/save", {
         Json: JSON.stringify(json)
       }).then(function (Respuesta) {
         _this2.Listar();
@@ -2503,7 +2503,7 @@ __webpack_require__.r(__webpack_exports__);
     Search: function Search(id) {
       var _this3 = this;
 
-      axios.get("api/estatus/" + id).then(function (Respuesta) {
+      axios.get("web/estatus/" + id).then(function (Respuesta) {
         _this3.EsNuevo = false;
         _this3.nbEstatus = Respuesta.data.nbEstatus;
         _this3.tpEstatus = Respuesta.data.tpEstatus;
@@ -2516,7 +2516,7 @@ __webpack_require__.r(__webpack_exports__);
         nbEstatus: this.nbEstatus,
         tpEstatus: this.tpEstatus
       };
-      axios.post("api/estatus/update", {
+      axios.post("web/estatus/update", {
         Json: JSON.stringify(json)
       }).then(function (Respuesta) {
         _this4.EsNuevo = true;
@@ -2541,7 +2541,7 @@ __webpack_require__.r(__webpack_exports__);
           var json = {
             id: id
           };
-          axios.post("api/estatus/delete", {
+          axios.post("web/estatus/delete", {
             Json: JSON.stringify(json)
           }).then(function (Respuesta) {
             swal("Hecho!", "Eliminado", "success");
@@ -2805,11 +2805,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      TipoNotificacion: [],
-      nbTipoNotificacion: "",
+      Usuario: [],
+      ids: [],
+      name: "",
+      email: "",
       Notificacion: [],
       idtipoNotificacion: "",
       titulo: "",
@@ -2825,28 +2838,33 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    Listartipn: function Listartipn() {
+    ListarUser: function ListarUser() {
       var _this = this;
 
-      axios.get("api/notip").then(function (Respuesta) {
-        _this.TipoNotificacion = Respuesta.data;
+      axios.get("web/useractive").then(function (Respuesta) {
+        _this.Usuario = Respuesta.data;
       });
     },
+    LimpiarCampos: function LimpiarCampos() {
+      this.titulo = "", this.descripcion = "", this.fechaEvento = "", this.ids = "";
+    },
     SaveNotif: function SaveNotif() {
-      var json = {
+      var _this2 = this;
+
+      axios.post("web/notifrecord/save", {
         titulo: this.titulo,
         descripcion: this.descripcion,
-        fechaEvento: this.fechaEvento
-      };
-      axios.post("api/notifservi/save", {
-        Json: JSON.stringify(json)
+        fechaEvento: this.fechaEvento,
+        id: this.ids
       }).then(function (Respuesta) {
         alert("guardato");
+
+        _this2.LimpiarCampos();
       })["catch"]();
     }
   },
   created: function created() {
-    this.Listartipn();
+    this.ListarUser();
   }
 });
 
@@ -3206,7 +3224,7 @@ __webpack_require__.r(__webpack_exports__);
     Listar: function Listar() {
       var _this = this;
 
-      axios.get("api/zonas").then(function (Respuesta) {
+      axios.get("web/zonas").then(function (Respuesta) {
         _this.Zonas = Respuesta.data;
       });
     },
@@ -3219,7 +3237,7 @@ __webpack_require__.r(__webpack_exports__);
         DesZonas: this.DesZonas,
         pathArchivo: this.file
       };
-      axios.post("api/zonas/save", {
+      axios.post("web/zonas/save", {
         Json: JSON.stringify(json)
       }).then(function (Respuesta) {
         _this2.EsNuevo = true;
@@ -40269,47 +40287,45 @@ var render = function() {
                   }
                 })
               ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "label",
-                  {
-                    staticClass: "col-sm-2 col-form-label",
-                    attrs: { for: "inputEmail3" }
-                  },
-                  [_vm._v("Descripción")]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-sm-8" }, [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.descripcion,
-                        expression: "descripcion"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { id: "", rows: "3" },
-                    domProps: { value: _vm.descripcion },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.descripcion = $event.target.value
-                      }
-                    }
-                  })
-                ])
-              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "col-sm-2 col-form-label",
+                  attrs: { for: "inputEmail3" }
+                },
+                [_vm._v("Descripción")]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
+              _c("div", { staticClass: "col-sm-8" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.descripcion,
+                      expression: "descripcion"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "", rows: "3" },
+                  domProps: { value: _vm.descripcion },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.descripcion = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group row" }, [
+              _c("div", { staticClass: "col-sm-8" }, [
                 _c(
                   "button",
                   {
@@ -40325,30 +40341,91 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-md-12" },
-            [
-              _c(
-                "table-basic",
-                [
-                  _c("template", { slot: "title" }, [
-                    _vm._v("\n\t\t    Guardados\n\t\t")
-                  ]),
-                  _vm._v(" "),
-                  _c("template", { slot: "thead" }, [
-                    _c("th", [_vm._v("Titulo")]),
+          _c("div", [
+            _c(
+              "div",
+              { staticClass: "col-md-6" },
+              [
+                _c(
+                  "table-basic",
+                  [
+                    _c("template", { slot: "title" }, [
+                      _vm._v("\n\t\t    Usuarios\n\t\t")
+                    ]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Acciones")])
-                  ]),
-                  _vm._v(" "),
-                  _c("template", { slot: "tbody" })
-                ],
-                2
-              )
-            ],
-            1
-          )
+                    _c("template", { slot: "thead" }, [
+                      _c("th", [_vm._v("Nombre")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Seleccionar")])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "template",
+                      { slot: "tbody" },
+                      _vm._l(_vm.Usuario, function(user, index) {
+                        return _c("tr", { key: index }, [
+                          _c("td", [_vm._v(_vm._s(user.name))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(user.email))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.ids,
+                                  expression: "ids"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "checkbox" },
+                              domProps: {
+                                value: user.id,
+                                checked: Array.isArray(_vm.ids)
+                                  ? _vm._i(_vm.ids, user.id) > -1
+                                  : _vm.ids
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.ids,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = user.id,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 && (_vm.ids = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.ids = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.ids = $$c
+                                  }
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ],
+                  2
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12" }, [
+            _vm._v("\n\t  " + _vm._s(_vm.ids) + "\n\t  ")
+          ])
         ])
       ])
     ],
