@@ -13,39 +13,50 @@
 		    <input v-model="titulo" type="text" class="form-control">
 		  </div>
 	      </div>
-	       <div class="form-group row">
+	      <div class="form-group row">
 		<label for="inputEmail3" class="col-sm-2 col-form-label">Fecha del Evento</label>
 		  <div class="col-sm-8">
 		 <input v-model="fechaEvento" type="date" class="form-control">  
 		  </div>
-	      </div>
-	  </div>
-	  <div>
-	  <div class="col-md-6">
-	    <div class="form-group row">
+	      </div>	   
+	      <div class="form-group row">
 		<label for="inputEmail3" class="col-sm-2 col-form-label">Descripción</label>
 		  <div class="col-sm-8">
 		    <textarea v-model="descripcion" id="" class="form-control"  rows="3"></textarea>
 		  </div>
-	      </div>
+	      </div>    
 	      <div class="form-group row">
-		  <button @click="SaveNotif()" >Guardar</button>	
+		    <div class="col-sm-8">
+		      <button @click="SaveNotif()" >Guardar</button>	
+		    </div>
 	      </div>
+	  </div>
+	  <div>
+	  <div class="col-md-6">
+	       <table-basic>
+		<template slot="title">
+		    Usuarios
+		</template>
+		<template slot="thead">
+		  <th>Nombre</th>
+		  <th>Email</th>
+		  <th>Seleccionar</th>
+		</template>
+		<template slot="tbody">
+		<tr :key="index" v-for="(user,index) of Usuario" >
+		<td>{{user.name}}</td>
+		<td>{{user.email}}</td>
+		<td>
+		    <input  :value=user.id type="checkbox" class="form-check-input" v-model="ids">
+		</td>
+		</tr>
+		</template>
+	      </table-basic>
 	  </div>
 	  </div>	  
 	  <div class="col-md-12">
-	      <table-basic>
-		<template slot="title">
-		    Guardados
-		</template>
-		<template slot="thead">
-		  <th>Titulo</th>
-		  <th>Acciones</th>
-		</template>
-		<template slot="tbody">
-	  </template>
-	      </table-basic>
-	    </div>
+	  {{ids}}
+	  </div>
         </div>
     </template>
   </form-basic>
@@ -55,8 +66,10 @@
 export default {
   data(){
     return{
-      TipoNotificacion:[],
-	nbTipoNotificacion:"",
+      Usuario:[],
+      ids:[],
+	name:"",
+	email:"",
       Notificacion:[],
 	idtipoNotificacion:"",
 	titulo:"",
@@ -68,27 +81,34 @@ export default {
 	fgReservacion:"",
 	idReservacion:"",
 	Nuevo:true,
-	Errores:[]
+      Errores:[]
     };
   },
   methods:{
-	    Listartipn(){
-	      axios.get("web/notip").then(Respuesta=>{this.TipoNotificacion=Respuesta.data})
+	    ListarUser(){
+	      axios.get("web/useractive").then(Respuesta=>{this.Usuario=Respuesta.data})
+	    },
+	    LimpiarCampos(){
+	      this.titulo="",
+	      this.descripcion="",
+	      this.fechaEvento="",
+	      this.ids=""
 	    },
 	    SaveNotif(){
-	      let json={
+	      axios.post("web/notifrecord/save",{
 		titulo:this.titulo,
 		descripcion:this.descripcion,
-		fechaEvento:this.fechaEvento
-	      };
-	      axios.post("web/notifservi/save",{Json:JSON.stringify(json)})
-		.then(Respuesta=>{
+		fechaEvento:this.fechaEvento,
+		id:this.ids
+	      })
+		 .then(Respuesta=>{
 		    alert("guardato");
-		    }).catch();
-	    }
-  },
+		    this.LimpiarCampos();
+		  }).catch();
+		}
+	    },
 	  created(){
-	    this.Listartipn();
+	    this.ListarUser();
 	  }
 }
 </script>

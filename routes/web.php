@@ -91,10 +91,12 @@ Route::get('notifrecord',function(){
 Route::get('web/notifservi','NotificacionController@ListarServ');
 Route::get('web/notifservi/{id}','NotificacionController@BuscarServ');
 Route::get('web/notip','NotificacionController@Listartipn');
+Route::get('web/useractive','NotificacionController@ListarUser');
+
 
 Route::post('web/notifservi/save','NotificacionController@SaveServ');
 
-
+Route::post('web/notifrecord/save','NotificacionController@SaveRecor');
 
 
 
