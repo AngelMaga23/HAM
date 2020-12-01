@@ -53,7 +53,7 @@ class AreaController extends Controller
         try {
 
             $area = DB::table('areas as a')
-            ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
+            ->select(DB::raw('a.id as idarea, a.nbArea,a.pathArchivo,a.DesAreas, a.numPersonasPermitidas, a.fgAdmiteNinios, z.nbZona'))
             ->join('zonas as z','a.idZona','=','z.id')
             ->where('z.id',$idzona)
             ->get();
