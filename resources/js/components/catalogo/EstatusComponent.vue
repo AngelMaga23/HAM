@@ -1,39 +1,13 @@
 <template>
-  <form-basic>
-    <template slot="titulo">
-      Estatus 
-    </template>
-    <template slot="formulario">        
-    <h4 class="mb"> Registro</h4>
-        <div class="row">
-	  <div class="col-md-6">
-	     <div class="form-group row">
-		<label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-		  <div class="col-sm-8">
-		    <input v-model="nbEstatus" type="text" class="form-control">
-		  </div>
-	      </div>
-	      <div class="form-group row">
-		<label for="inputEmail3" class="col-sm-2 col-form-label">tipo</label>
-		  <div class="col-sm-8">
-		    <select v-model="tpEstatus" name="" id="" class="form-control">
-		      <option value="default">Default</option>
-		      <option value="Rule">Rule</option>
-		    </select>
-		  </div>
-	      </div>
-	  
-	  </div>
-	  <div>
-	    <button  v-if="EsNuevo" class="btn btn-primary btn-lg" @click="Save()">Guardar</button>
-	    <button v-else @click="Update()" class="btn btn-primary btn-lg">Modificar</button>  
-	  </div>
-	  <div class="col-md-12">
-	      <table-basic>
+  <div class="row">
+      <table-basic v-if="Form == 1">
 		<template slot="title">
-		    Guardados
-		</template>
-		<template slot="thead">
+		    Estatus
+                </template>
+                <template slot="button">
+                  <button @click="modal()" class="btn btn-primary btn-round" > <i class="nc-icon nc-simple-add"></i>Nuevo</button>
+                </template>		
+                <template slot="thead">
 		  <th>Nombre</th>
 		  <th>Acciones</th>
 		</template>
@@ -41,16 +15,49 @@
 		<tr :key="index" v-for="(estatu,index) of Estatus">
 		  <td>{{estatu.nbEstatus}}</td>
 		  <td>
-		    <button @click="Search(estatu.id)" class="btn btn-success">Editar</button>
+		    <button @click="Search(estatu.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
+		    <button @click="Search(estatu.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
 		  </td>
 		</tr>
 		</template>
-	      </table-basic>
-	    </div>
-        </div>
-    </template>
-  </form-basic>
-</template>
+      </table-basic>
+      <form-basic v-if="Form == 2">
+        <template slot="title">
+           Estatus     
+        </template>
+        <template slot="button">
+            <button class="btn btn-primary btn-round" @click="LimpiarCampos()"><i class="nc-icon nc-minimal-left"></i> Lista </button>
+        </template>
+        <template slot="body">
+          <form>
+              <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Nombre</label>
+                        <input v-model="nbEstatus" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Tipo Estatus</label>
+                          <select v-model="tpEstatus" name="" id="" class="form-control">
+		            <option value="default">Default</option>
+		            <option value="Rule">Rule</option>
+		          </select>
+                      </div>
+                    </div>
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="Save()">Guardar</button>
+	              <button v-else @click="Update()" class="btn btn-info btn-round">Modificar</button>
+                </div>
+              </div>
+          </form>
+        </template>
+       </form-basic>
+  </div>
+  </template>
 
 <script>
   export default{
@@ -59,15 +66,19 @@
 	Estatus:[],
 	nbEstatus:"",
 	tpEstatus:"",
-
+        Form:"", 
 	EsNuevo:true,
 	Errores:[]
       };
     },
     methods: {
+          modal(){
+              this.Form=2;
+          },
 	  LimpiarCampos(){
-	      this.nbEstatus="";
-	      this.tpEstatus="";
+	    this.nbEstatus="";
+            this.tpEstatus="";
+            this.Form=1;
 	  },
 	  Listar(){
 	    axios.get("web/estatus").then(Respuesta=>{this.Estatus=Respuesta.data});
@@ -80,7 +91,8 @@
 	    axios.post("web/estatus/save",{Json:JSON.stringify(json)})
 	      .then(Respuesta=>{
 		   this.Listar();
-		   this.LimpiarCampos();
+                    this.LimpiarCampos();
+                
 		  }).catch(error=>{
 		    if(error.response.status==500){
 		      this.Errores=error.response.data.errores;
@@ -92,7 +104,7 @@
 		  this.EsNuevo=false;
 		  this.nbEstatus=Respuesta.data.nbEstatus;
 		  this.tpEstatus=Respuesta.data.tpEstatus;
-
+                  this.modal();        
 		})
 	  },
 	  Update(){
@@ -105,11 +117,10 @@
 		    this.EsNuevo=true;
 		    this.LimpiarCampos();
 		    this.Errores =[];
-
 		    swal("Hecho!","Registro Modificado","success")
 		  })
 	  },
-	  Delet(Id){
+	  Delet(id){
 	    swal({
 		title:"¿Estas seguro?", 
 		text:"El elemento sera eliminado!",
@@ -134,6 +145,7 @@
     },
     created(){
       this.Listar();
+      this.Form=1;
     }
 
   }	

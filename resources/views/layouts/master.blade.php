@@ -12,97 +12,162 @@
     <title>
         @yield('titulo')
     </title>
+  <!--Default-->
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- Bootstrap core CSS -->
-  <link href="{{ asset('lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <!--external css-->
-  <link href="{{ asset('lib/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
- 
-  <link rel="stylesheet" href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}" rel="stylesheet">
-  <!--filepond-->    
-  <!--fileinput -->
-
+  <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <link  href="{{ asset('css/paper-dashboard.css') }}" rel="stylesheet">
+  <link  href="{{ asset('demo/demo.css') }}" rel="stylesheet">
 </head>
 <body>
-    <section id="container">
-    <header class="header blue-bg">
-        <div class="sidebar-toggle-box">
-          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-        </div>
-        <!--logo start-->
-        <a href="index.html" class="logo"><b>HAM</b></a>
-        <!--logo end-->
-        <div class="nav notify-row" id="top_menu">
-        </div>
-        <div class="top-menu">
-          <ul class="nav pull-right top-menu">
-            <li>
-              <a class="logout" href="login.html">Login</a>
-            </li>
-          </ul>
-        </div>
-    </header>
-    <aside>
-        <div id="sidebar" class="nav-collapse ">
-	  <!-- sidebar menu start-->
-	  <ul class="sidebar-menu" id="nav-accordion">
-            <li class="mt">
-              <a href="{{ route('empresa') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Empresa</span>
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <div class="logo">
+        <a href="https://www.creative-tim.com" class="simple-text logo-mini">
+          <div class="logo-image-small">
+            <img src="../assets/img/logo-small.png">
+          </div>
+          <!-- <p>CT</p> -->
+        </a>
+	<a href="https://www.creative-tim.com" class="simple-text logo-normal">
+		    HAM
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+	  <li>
+            <a href="{{ route('areas') }}">
+                <i class="nc-icon nc-bank"></i>
+                <p>Areas</p>
               </a> 
-	    </li>
-           
-          <li class="mt">
-              <a href="{{ route('zonas') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Zona</span>
-                </a>
-	    </li>
-	  <li class="mt">
-              <a href="{{ route('areas') }}">
-                <i class="fa fa-dashboard"></i>
-                <span>Areas</span>
-                </a>
-	    </li>
-	  <li class="mt">
-              <a href="{{ route('estatus') }}">
-                <i class="fa fa-dashboard"></i>
-		  <span>Estatus</span>
-	      </a>
-	  </li>
-	  <li class="mt">
-              <a href="{{ route('notifservi') }}">
-                <i class="fa fa-dashboard"></i>
-		  <span>Notifi-Servicios</span>
-	      </a>
-	  </li>
-	  <li class="mt">
-              <a href="{{ route('notifrecord') }}">
-                <i class="fa fa-dashboard"></i>
-		  <span>Notifi-Reserva</span>
-	      </a>
           </li>
-          </ul>
-          <!-- sidebar menu end-->
+          <li>
+            <a href="{{ route('empleados') }}">
+              <i class="nc-icon nc-diamond"></i>
+              <p>Empleados</p>
+            </a>
+          </li>
+          <li >
+            <a href="{{ route('empresa') }}">
+              <i class="nc-icon nc-pin-3"></i>
+              <p>Empresas</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('estatus') }}">
+              <i class="nc-icon nc-bell-55"></i>
+              <p>Estatus</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('habitaciones') }}">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Habitaciones</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('notificaciones') }}">
+              <i class="nc-icon nc-tile-56"></i>
+              <p>Notificaciones</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('defaul') }}">
+              <i class="nc-icon nc-caps-small"></i>
+              <p>Proveedores</p>
+            </a>
+          </li>
+           <li>
+            <a href="{{ route('servicios') }}">
+              <i class="nc-icon nc-caps-small"></i>
+              <p>Servicios</p>
+            </a>
+          </li>
+	   <li>
+            <a href="{{ route('defaul') }}">
+              <i class="nc-icon nc-caps-small"></i>
+              <p>Sucursales</p>
+            </a>
+          </li>
+	  <li>
+            <a href="{{ route('zonas') }}">
+              <i class="nc-icon nc-caps-small"></i>
+              <p>Zona</p>
+            </a>
+          </li>
+	  <li>
+            <a href="./typography.html">
+              <i class="nc-icon nc-caps-small"></i>
+              <p>Usuarios</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="javascript:;">Health Administration Management</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <form>
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="nc-icon nc-zoom-split"></i>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
         </div>
-    </aside>
-    <section id="main-content">
-        <section id="app" class="wrapper">
+      </nav>
+      <!-- End Navbar -->
+      <div id="app" class="content">
                @yield('content')
-        </section>
-      </section>
-    </section>
-      <!-- js placed at the end of the document so the pages load faster -->
-  <script src="{{ asset('lib/jquery/jquery.min.js')}}"></script>
-  <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js')}}"></script>
-  <script class="include" type="text/javascript" src="{{ asset('lib/jquery.dcjqaccordion.2.7.js')}}"></script>
-  <script src="{{ asset('lib/jquery.scrollTo.min.js')}}"></script>
-  <script src="{{ asset('lib/jquery.nicescroll.js')}}" type="text/javascript"></script>
-  <!--common script for all pages-->
-  <script src="{{ asset('lib/common-scripts.js')}}"></script>
-  <!--script for this page-->
+      </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <script src="{{asset('js/core/jquery.min.js')}}"></script>
+  <script src="{{asset('js/core/popper.min.js')}}"></script>
+  <script src="{{asset('js/core/bootstrap.min.js')}}"></script>
+  <script src="{{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="{{asset('js/plugins/chartjs.min.js')}}"></script>
+  <!--  Notifications Plugin    -->
+  <script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{asset('js/paper-dashboard.min.js')}}" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="{{asset('demo/demo.js')}}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
-  <script src="sweetalert2.all.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      demo.initGoogleMaps();
+    });
+  </script>
 </body>
 </html>
