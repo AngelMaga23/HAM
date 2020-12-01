@@ -54,7 +54,7 @@ class NotificacionController extends Controller
                                 ->join('TipoNotificacion as tn','n.idtipoNotificacion','=','tn.id')
                                 ->join('reservaciones as r','n.idReservacion','=','r.id')
                                 ->where('n.idUsuario',$id)
-                                ->orderBy('n.id')
+                                ->orderBy('n.fechaRegistro','desc')
                                 ->get();
             
             if(!$notifiaciones->isEmpty())
