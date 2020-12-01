@@ -162,6 +162,45 @@ class ReservacionController extends Controller
 
     }
 
+    public function getReservacionOcupado($id)
+    {
+        try {
+
+            $reservaciones = DB::table('reservaciones as r')
+                ->select(DB::raw('r.id as idreservacion,r.feReservacion,r.tpReservacion,a.nbArea,a.pathArchivo,a.DesAreas,r.numPersonas,r.Estatus,r.feRegistro'))
+                ->join('areas as a','r.idDiscriminador','=','a.id')
+                ->where('r.idUsuario',$id)
+                ->where('r.Estatus','ocupado')
+                ->orderBy('r.id')
+                ->get();
+
+            if(!$reservaciones->isEmpty())
+            {
+                return response()->json([
+                    "Estatus" => 1,
+                    "Data" => $reservaciones,
+                    "Mensaje" => "Operación realizada con éxito"
+                ]);
+
+            }else{
+                return response()->json([
+                    "Estatus" => 0,
+                    "Data" => $reservaciones,
+                    "Mensaje" => "No se encontraron elementos"
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+
+            return response()->json([
+                "Estatus" => -1,
+                "Data" => $reservaciones,
+                "Mensaje" => $th
+            ]);
+
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

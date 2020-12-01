@@ -35,6 +35,8 @@ Route::get('servicios','Api\ServicioController@index');
 
 Route::post('reser_register','Api\ReservacionController@store');
 Route::post('show_register/{id}','Api\ReservacionController@show');
+Route::post('Reservacion_ocupados/{id}','Api\ReservacionController@getReservacionOcupado');
+
 
 Route::post('reser_ocupado','Api\ReservacionController@update_ocupado');
 Route::post('reser_finzalizado','Api\ReservacionController@update_finalizado');
