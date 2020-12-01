@@ -46,6 +46,7 @@ class NotificacionController extends Controller
             $Notif -> descripcion=$request['descripcion'];
 	    $Notif -> fechaEvento =$request['fechaEvento'];
 	    $Notif -> fechaRegistro= $date->toDateTimeString();
+	    $Notif -> subtitulo=$request['subtitulo'];
 	    $Notif -> idtipoNotificacion=2; 	    
 	$Notif -> idUsuario=$ids;
 	$Notif->save() ;
@@ -74,10 +75,9 @@ class NotificacionController extends Controller
 	  $contador=$this->ListarUser();
 	foreach($contador as $con){
 	  $date=Carbon::Now();
-
 	  $Notif = new Notificaciones();
-
-            $Notif -> titulo= $ParametrosArray['titulo'];
+	    $Notif -> titulo= $ParametrosArray['titulo'];
+	    $Notif -> subtitulo=$ParametrosArray['subtitulo'];
             $Notif -> descripcion=$ParametrosArray['descripcion'];
 	    $Notif -> fechaEvento =$ParametrosArray['fechaEvento'];
 	    $Notif -> fechaRegistro= $date->toDateTimeString();
@@ -85,9 +85,6 @@ class NotificacionController extends Controller
 	    $Notif -> idUsuario=$con->id;
 	    $Notif->save() ;
 	    	  }
-
-
-
 
           $Respuesta = array(
                 'status'        =>      'success',

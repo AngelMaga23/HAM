@@ -15,16 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('prueba');
+    return view('catalogos/Default');
 });
+
+Route::get('defaul', function () {
+    return view('catalogos/Default');
+})->name('defaul');
+
 
 Route::get('empresa', function(){
     return view('catalogos/Empresa');
 })->name('empresa');
 
-Route::get('areas', function(){
-    return view('catalogos/Areas');
-})->name('areas');
+
 Route::get('Empleados', function(){
     return view('catalogos/Empleados');
 })->name('empleados');
@@ -38,11 +41,14 @@ Route::get('ReservaHabitacion', function(){
 })->name('reservahabitacion');
 
 
+
 Route::get('Servicios', function(){
     return view('catalogos/Servicios');
 })->name('servicios');
 
-
+Route::get('areas', function(){
+    return view('catalogos/Areas');
+})->name('areas');
 
 Auth::routes();
 
@@ -80,22 +86,16 @@ Route::post('web/estatus/update','EstatuController@Actualizar');
 
 //Rutas notifservi
 //vistas
-Route::get('notifservi', function(){
-    return view('catalogos/NotifServi');
-})->name('notifservi');
+Route::get('notificaciones', function(){
+    return view('catalogos/Notificaciones');
+})->name('notificaciones');
 
-Route::get('notifrecord',function(){
-  return view('catalogos/NotifRecord');
-})->name('notifrecord'); 
-
+Route::get('web/notifcac/{id}','EstatuController@Buscar');
 Route::get('web/notifservi','NotificacionController@ListarServ');
 Route::get('web/notifservi/{id}','NotificacionController@BuscarServ');
 Route::get('web/notip','NotificacionController@Listartipn');
 Route::get('web/useractive','NotificacionController@ListarUser');
-
-
 Route::post('web/notifservi/save','NotificacionController@SaveServ');
-
 Route::post('web/notifrecord/save','NotificacionController@SaveRecor');
 
 

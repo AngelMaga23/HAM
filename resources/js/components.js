@@ -1,5 +1,4 @@
-Vue.component('notifrec-component', require('./components/catalogo/NotifiRecordComponent.vue').default);
-Vue.component('notifservi-component', require('./components/catalogo/NotifServiComponent.vue').default);
+Vue.component('notificaciones-component', require('./components/catalogo/NotificacionesComponent.vue').default);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('registro-component', require('./components/catalogo/RegistroComponent.vue').default);
@@ -12,8 +11,9 @@ Vue.component('sucursal-component', require('./components/catalogo/SucursalCompo
 
 Vue.component('zona-component', require('./components/catalogo/ZonasComponent.vue').default);
 Vue.component('area-component', require('./components/catalogo/AreasComponent.vue').default);
-Vue.component('reservahabitacion-component', require('./components/modulos/ReservasHabitacionComponent.vue').default);
 
+Vue.component('reservahabitacion-component', require('./components/modulos/ReservasHabitacionComponent.vue').default);
+Vue.component('qr-component', require('./components/catalogo/GeneradorQrComponent.vue').default);
 
 Vue.component('estatus-component',require('./components/catalogo/EstatusComponent.vue').default);
 Vue.component('habitacion-component',require('./components/catalogo/HabitacionesComponent.vue').default);

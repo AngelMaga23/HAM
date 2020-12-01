@@ -1,94 +1,138 @@
 <template>
-<form-basic>
-    <template slot="titulo">
-        Areas
-    </template>
-    <template slot="formulario">
-        <h4 class="mb"> Registro</h4>
+  <div class="row">
+      <table-basic v-if="Form == 1">
+        <template slot="title">
+                  Areas
+                </template>
+                <template slot="button">
+                  <button @click="modal()" class="btn btn-primary btn-round" > <i class="nc-icon nc-simple-add"></i>Nuevo</button>
+                </template>		
+                <template slot="thead">
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Id Zonas</th>
+                  <th>Numero de Personas </th>
+		  <th>Acciones</th>
+		</template>
+		<template slot="tbody">
+		<tr :key="index" v-for="(estatu,index) of Estatus">
+		  <td>{{estatu.nbEstatus}}</td>
+		  <td>
+		    <button @click="Search(estatu.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
+		    <button @click="Search(estatu.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
+		  </td>
+		</tr>
+		</template>
+      </table-basic>
+      <form-basic v-if="Form == 2">
+        <template slot="title">
+                Areas
+        </template>
+        <template slot="button">
+            <button class="btn btn-primary btn-round" @click="LimpiarCampos()"><i class="nc-icon nc-minimal-left"></i> Lista </button>
+        </template>
+        <template slot="body">
+          <form>
+              <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label>Nombre</label>
+                        <input v-model="nbEstatus" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-3 pl-1">
+                      <div class="form-group">
+                        <label>Numero de personas permitidas</label>
+                        <input v-model="NumPersonasMax"  type="number" class="form-control"> 
+                      </div>
+                    </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label>Admite niños?</label>
+                          <select v-model="FgAdmiteNinios" name="" id="" class="form-control">
+		            <option value="si">SI</option>
+		            <option value="no">NO</option>
+		          </select>
+                      </div>
+                      </div>
+                    <div class="col-md-2 pl-1">
+                      <div class="form-group">
+                        <label>Zonas</label>
+                          <select v-model="IdZona" name="" id="" class="form-control">
+		            <option value="si">SI</option>
+		            <option value="no">NO</option>
+		          </select>
+                      </div>
+                    </div>
+              </div>
+              <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                      </div>
+                    </div>
 
-        <form class="form-horizontal style-form" method="get">
-            <div class="row">
-          <div class="col-md-6">
-                    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-8">
-                            <input v-model="CorreoContacto" type="text" class="form-control">
-                        </div>
-                    </div>
-		    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Imagen</label>
-                        <div class="col-sm-8">
-			<input type="file" class="form-control">
-                        </div> 
-                    </div>
-	  </div>    
-	  <div class="col-md-6">
-		<div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Descripcion</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control" rows="1" ></textarea>
-                        </div> 
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="Save()">Guardar</button>
+	              <button v-else @click="Update()" class="btn btn-info btn-round">Modificar</button>
                 </div>
-		<div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Zonas</label>
-                        <div class="col-sm-8">
-			    <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select> 
-                        </div> 
-                </div>
-	  </div>
-           <div class="col-md-6">          
-		    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Num personas</label>
-                        <div class="col-sm-8">
-			  <input type="number" class="form-control" >
-                        </div> 
-                    </div>
-		    <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Admite niños</label>
-                        <div class="col-sm-8">
-			  <label class="checkbox-inline">
-			      <input type="checkbox" id="inlineCheckbox2" value="option2"> Si
-			  </label>
-			  <label class="checkbox-inline">
-			      <input type="checkbox" id="inlineCheckbox3" value="option3"> No
-			  </label>
-                        </div> 
-                    </div>
-                </div>
-	    </div>
-	    <div class="col-md-6">
-	    </div>
-	</form>
-       <input type="submit" class="btn btn-primary" value="Registrar">
-    </template>
-</form-basic> 
+              </div>
+          </form>
+        </template>
+       </form-basic>
+  </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-
+          Zonas:[],
+          Areas:[],
+          nbAreas:"",
+          DesAreas:"",
+          IdZona:"",
+          NumPersonasMax:"",
+          PatcArchivo:"",
+          FgAdmiteNinios:"",
+          EsNuevo:true,
+          Errores:[],
+          Form:""
         };
     },
     methods: {
-        MostrarModal() {
-            this.LimpiarCampos();
-
-            $("#Modal").modal();
-        },
         LimpiarCampos() {
-            this.Nombre = "";
-            this.IdEmpresaSucursal = "";
-            this.IdDescartes = "";
-        }
+            this.nbAreas = "";
+            this.DesAreas = "";
+            this.NumPersonasMax = "";
+            this.IdZona="";
+            this.PatcArchivo="";
+            this.Form=1;
+        },
+        modal(){
+              this.Form=2;
+        },
+      Listar(){
 
-    }
+      },
+      Save(){
+
+      },
+      Search(id){
+
+      },
+      Update(){
+
+      },
+      Delet(id){
+        
+      }
+    },
+  created(){
+    this.Form=1;
+  }
 };
 </script>
