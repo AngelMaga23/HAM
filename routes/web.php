@@ -72,8 +72,10 @@ Route::get('areas', function(){
     return view('catalogos/Areas');
 })->name('areas');
 
-Route::get('web/zonas','ZonaController@Listar');
+Route::get('web/areas','AreaController@Listar');
+Route::get('web/areas/{id}','AreaController@Buscar');
 
+Route::post('web/areas/save','AreaController@Save');
 //Rutas Estatus
 //vista
 Route::get('Estatus', function(){

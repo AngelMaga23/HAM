@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\areas;
+use App\Models\Areas;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Area;
+use App\areas as AppAreas;
 
 class AreaController extends Controller
 {
@@ -121,5 +121,26 @@ class AreaController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function Listar(){
+	$areas=areas::all();
+	return $areas;
+    }
+    public function Buscar($id){
+      $areas=areas::find($id);
+      return $areas;
+    }
+    public function Save(Request $request){
+	  $Json =$request ->input('Json',null);
+	  $data=json_decode($Json,true);
+
+	  $areas =new areas();
+	  $areas ->nbArea=$data['nbArea'] ;
+	  $areas ->DesAreas=$data['DesAreas'] ;
+	  $areas ->idzona=$data['idzona'] ;
+	  $areas ->numPersonasPermitidas=$data['numPersonasPermitidas'] ;
+	  $areas ->fgAdmiteNinios=$data['fgAdmiteNinios'] ;
+	  $areas ->save();
+
     }
 }

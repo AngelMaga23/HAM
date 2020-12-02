@@ -1,39 +1,66 @@
 <template>
-<div class="card catalogo-seccion">
-    <div class="card-header">
-        <div class="row">
-            <div class="col-md-10">
-                <h3>Empleados</h3>
-            </div>
-            <div style="text-align: right" class="col-md-2">
-                <button @click="MostrarModal()" class="btn btn-primary btn-block">
-                    Nuevo +
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <Modal-component IdModal="Modal" size="modal-lg" titulo="Nuevo" :esnuevo="EsNuevo">
-        <template slot="formulario">
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input />
+ <div class="row">
+      <table-basic v-if="Form == 1">
+		<template slot="title">
+		   Usuarios
+                </template>
+                <template slot="button">
+                </template>		
+                <template slot="thead">
+                  <th>Nombre</th>
+                  <th>Email</th>
+		  <th>Acciones</th>
+		</template>
+		<template slot="tbody">
+		<tr :key="index" v-for="(user,index) of Usuario">
+                  <td>{{user.name}}</td>
+                  <td>{{user.email}}</td>
+		  <td>
+		    <button @click="Search(user.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
+		    <button @click="Supender(user.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
+		  </td>
+		</tr>
+		</template>
+      </table-basic>
+      <form-basic v-if="Form == 2">
+        <template slot="title">
+          Usuario     
+        </template>
+        <template slot="button">
+            <button class="btn btn-primary btn-round" @click="LimpiarCampos()"><i class="nc-icon nc-minimal-left"></i> Lista </button>
+        </template>
+        <template slot="body">
+          <form>
+              <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>Nombre</label>
+                        <input v-model="name" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Email</label>
+                         <input v-model="email" type="text" class="form-control"> 
+                      </div>
+                    </div>
+              </div>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="Save()">Guardar</button>
+	              <button v-else @click="Update()" class="btn btn-info btn-round">Modificar</button>
                 </div>
-            </div>
+              </div>
+          </form>
         </template>
-        <template slot="acciones">
-
-        </template>
-    </Modal-component>
-</div>
-</template>
-
+       </form-basic>
+  </div>
+  </template>
 <script>
 export default {
     data() {
         return {
-
+          Usuario:[],
         };
     },
     methods: {
@@ -46,7 +73,10 @@ export default {
             this.Nombre = "";
             this.IdEmpresaSucursal = "";
             this.IdDescartes = "";
-        }
+        },
+      Listar(){
+       	      axios.get("web/useractive").then(Respuesta=>{this.Usuario=Respuesta.data})
+      }
 
     }
 };

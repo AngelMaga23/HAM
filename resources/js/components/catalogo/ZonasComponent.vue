@@ -14,9 +14,10 @@
 		  <th>Acciones</th>
 		</template>
 		<template slot="tbody">
-		<tr :key="index" v-for="(estatu,index) of Estatus">
-
-		  <td>{{estatu.nbEstatus}}</td>
+		<tr :key="index" v-for="(zona,index) of Zonas">
+                  <td>{{zona.nbZona}}</td>
+                  <td>{{zona.DesZonas}}</td>
+                  <td>{{zona.numPersonasPermitidasMax}}</td>
 		  <td>
 		    <button @click="Search(estatu.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
 		    <button @click="Search(estatu.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
@@ -98,7 +99,8 @@ export default {
 	  numPersonasPermitidasMax:"",
 	  EsNuevo: true,
 	  Errores: [],
-	  url:null,
+          url:null,
+          Form:"",
         };
     },
     methods: {
@@ -136,6 +138,7 @@ export default {
     },
     created(){
       this.Listar();
+      this.Form=1;
     },
 
 }

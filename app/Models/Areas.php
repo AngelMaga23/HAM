@@ -1,24 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Areas extends Model
+class areas extends Model
 {
    protected $table = "areas";
 
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'nbArea',
-	'pathArchivo'
-    ]; 
+      'nbArea',
+      'pathArchivo',
+      'DesAreas',
+      'idzona',
+      'numPersonasPermitidas',
+      'fgAdmiteNinios',    ]; 
 
     public $timestamps = false;
-    
-    /*Estatus tiene mucha zonas*/
-    public function zonas(){
-      return $this ->hasMany(zonas::class,'id'); 
-    }
 }

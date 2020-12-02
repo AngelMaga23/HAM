@@ -6,8 +6,9 @@ Vue.component('empresa-component', require('./components/catalogo/EmpresaCompone
 Vue.component('proveedor-component', require('./components/catalogo/ProveedoresComponent.vue').default);
 Vue.component('registro-component', require('./components/catalogo/RegistroComponent.vue').default);
 Vue.component('servicios-component', require('./components/catalogo/ServiciosComponent.vue').default);
-Vue.component('sucursal-component', require('./components/catalogo/SucursalComponent.vue').default);
 
+Vue.component('usuario-component', require('./components/catalogo/UsuariosComponent.vue').default);
+Vue.component('sucursal-component', require('./components/catalogo/SucursalComponent.vue').default);
 Vue.component('zona-component', require('./components/catalogo/ZonasComponent.vue').default);
 Vue.component('area-component', require('./components/catalogo/AreasComponent.vue').default);
 

@@ -42,13 +42,7 @@
                 <p>Areas</p>
               </a> 
           </li>
-                   <li >
-            <a href="{{ route('empresa') }}">
-              <i class="nc-icon nc-briefcase-24"></i>
-              <p>Empresas</p>
-            </a>
-          </li>
-          <li>
+                             <li>
             <a href="{{ route('estatus') }}">
               <i class="nc-icon nc-tag-content"></i>
               <p>Estatus</p>
@@ -61,12 +55,7 @@
               <p>Notificaciones</p>
             </a>
           </li>
-          <li>
-            <a href="{{ route('defaul') }}">
-              <i class="nc-icon nc-briefcase-24"></i>
-              <p>Sucursales</p>
-            </a>
-          </li>
+          
 	  <li>
             <a href="{{ route('zonas') }}">
               <i class="nc-icon nc-pin-3"></i>

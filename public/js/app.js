@@ -2139,6 +2139,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2163,19 +2165,85 @@ __webpack_require__.r(__webpack_exports__);
       this.IdZona = "";
       this.PatcArchivo = "";
       this.Form = 1;
+      this.Listar();
     },
     modal: function modal() {
       this.Form = 2;
     },
-    Listar: function Listar() {},
-    Listarzona: function Listarzona() {},
-    Save: function Save() {},
-    Search: function Search(id) {},
-    Update: function Update() {},
+    Listar: function Listar() {
+      var _this = this;
+
+      axios.get('web/areas').then(function (Respuesta) {
+        _this.Areas = Respuesta.data;
+      });
+    },
+    Listarzona: function Listarzona() {
+      var _this2 = this;
+
+      axios.get('web/zonas').then(function (Respuesta) {
+        _this2.Zonas = Respuesta.data;
+      });
+    },
+    Save: function Save() {
+      var _this3 = this;
+
+      var json = {
+        nbArea: this.nbAreas,
+        DesAreas: this.DesAreas,
+        idZona: this.IdZona,
+        fgAdmiteNinios: this.FgAdmiteNinios,
+        numPersonasPermitidas: this.NumPersonasMax
+      };
+      axios.post("web/areas/save", {
+        Json: JSON.stringify(json)
+      }).then(function (Respuesta) {
+        _this3.Listar();
+
+        _this3.LimpiarCampos();
+      })["catch"](function (error) {
+        if (error.response.status == 500) {
+          _this3.Errores = error.response.data.errores;
+        }
+      });
+    },
+    Search: function Search(id) {
+      var _this4 = this;
+
+      axios.get("web/areas/" + id).then(function (Respuesta) {
+        _this4.EsNuevo = false;
+        _this4.nbAreas = Respuesta.data.nbArea;
+        _this4.DesAreas = Respuesta.data.DesAreas;
+        _this4.IdZona = Respuesta.data.idZona;
+        _this4.NumPersonasMax = Respuesta.data.numPersonasPermitidas;
+        _this4.FgAdmiteNinios = Respuesta.data.fgAdmiteNinios;
+
+        _this4.modal();
+      });
+    },
+    Update: function Update() {
+      var _this5 = this;
+
+      var json = {
+        nbEstatus: this.nbEstatus,
+        tpEstatus: this.tpEstatus
+      };
+      axios.post("web/estatus/update", {
+        Json: JSON.stringify(json)
+      }).then(function (Respuesta) {
+        _this5.EsNuevo = true;
+
+        _this5.LimpiarCampos();
+
+        _this5.Errores = [];
+        swal("Hecho!", "Registro Modificado", "success");
+      });
+    },
     Delet: function Delet(id) {}
   },
   created: function created() {
     this.Form = 1;
+    this.Listar();
+    this.Listarzona();
   }
 });
 
@@ -3239,6 +3307,101 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      Usuario: []
+    };
+  },
+  methods: {
+    MostrarModal: function MostrarModal() {
+      this.LimpiarCampos();
+      $("#Modal").modal();
+    },
+    LimpiarCampos: function LimpiarCampos() {
+      this.Nombre = "";
+      this.IdEmpresaSucursal = "";
+      this.IdDescartes = "";
+    },
+    Listar: function Listar() {
+      var _this = this;
+
+      axios.get("web/useractive").then(function (Respuesta) {
+        _this.Usuario = Respuesta.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/ZonasComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/catalogo/ZonasComponent.vue?vue&type=script&lang=js& ***!
@@ -3248,6 +3411,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -3347,7 +3511,8 @@ __webpack_require__.r(__webpack_exports__);
       numPersonasPermitidasMax: "",
       EsNuevo: true,
       Errores: [],
-      url: null
+      url: null,
+      Form: ""
     };
   },
   methods: {
@@ -3393,6 +3558,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.Listar();
+    this.Form = 1;
   }
 });
 
@@ -9874,7 +10040,7 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 
 // module
-exports.push([module.i, "\n@-webkit-keyframes resizeSensorVisibility {\nfrom { top: 0;\n}\n}\n@keyframes resizeSensorVisibility {\nfrom { top: 0;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n@-webkit-keyframes resizeSensorVisibility {\nfrom { top: 0;\n}\n}\n@keyframes resizeSensorVisibility {\nfrom { top: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -9893,7 +10059,7 @@ exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base
 
 
 // module
-exports.push([module.i, "/* see https://github.com/mozilla/pdf.js/blob/55a853b6678cf3d05681ffbb521e5228e607b5d2/test/annotation_layer_test.css */\n.annotationLayer {\r\n\tposition: absolute;\r\n\tleft: 0;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tbottom: 0;\n}\n.annotationLayer section {\r\n\tposition: absolute;\n}\n.annotationLayer .linkAnnotation > a {\r\n\tposition: absolute;\r\n\tfont-size: 1em;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\twidth: 100%;\r\n\theight: 100%;\n}\n.annotationLayer .linkAnnotation > a /* -ms-a */  {\r\n\tbackground: url(\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\") 0 0 repeat;\n}\n.annotationLayer .linkAnnotation > a:hover {\r\n\topacity: 0.2;\r\n\tbackground: #ff0;\r\n\tbox-shadow: 0px 2px 10px #ff0;\n}\n.annotationLayer .textAnnotation img {\r\n\tposition: absolute;\r\n\tcursor: pointer;\n}\n.annotationLayer .textWidgetAnnotation input,\r\n.annotationLayer .textWidgetAnnotation textarea,\r\n.annotationLayer .choiceWidgetAnnotation select,\r\n.annotationLayer .buttonWidgetAnnotation.checkBox input,\r\n.annotationLayer .buttonWidgetAnnotation.radioButton input {\r\n\tbackground-color: rgba(0, 54, 255, 0.13);\r\n\tborder: 1px solid transparent;\r\n\tbox-sizing: border-box;\r\n\tfont-size: 9px;\r\n\theight: 100%;\r\n\tpadding: 0 3px;\r\n\tvertical-align: top;\r\n\twidth: 100%;\n}\n.annotationLayer .textWidgetAnnotation textarea {\r\n\tfont: message-box;\r\n\tfont-size: 9px;\r\n\tresize: none;\n}\n.annotationLayer .textWidgetAnnotation input[disabled],\r\n.annotationLayer .textWidgetAnnotation textarea[disabled],\r\n.annotationLayer .choiceWidgetAnnotation select[disabled],\r\n.annotationLayer .buttonWidgetAnnotation.checkBox input[disabled],\r\n.annotationLayer .buttonWidgetAnnotation.radioButton input[disabled] {\r\n\tbackground: none;\r\n\tborder: 1px solid transparent;\r\n\tcursor: not-allowed;\n}\n.annotationLayer .textWidgetAnnotation input:hover,\r\n.annotationLayer .textWidgetAnnotation textarea:hover,\r\n.annotationLayer .choiceWidgetAnnotation select:hover,\r\n.annotationLayer .buttonWidgetAnnotation.checkBox input:hover,\r\n.annotationLayer .buttonWidgetAnnotation.radioButton input:hover {\r\n\tborder: 1px solid #000;\n}\n.annotationLayer .textWidgetAnnotation input:focus,\r\n.annotationLayer .textWidgetAnnotation textarea:focus,\r\n.annotationLayer .choiceWidgetAnnotation select:focus {\r\n\tbackground: none;\r\n\tborder: 1px solid transparent;\n}\n.annotationLayer .textWidgetAnnotation input.comb {\r\n\tfont-family: monospace;\r\n\tpadding-left: 2px;\r\n\tpadding-right: 0;\n}\n.annotationLayer .textWidgetAnnotation input.comb:focus {\r\n\t/*\r\n\t * Letter spacing is placed on the right side of each character. Hence, the\r\n\t * letter spacing of the last character may be placed outside the visible\r\n\t * area, causing horizontal scrolling. We avoid this by extending the width\r\n\t * when the element has focus and revert this when it loses focus.\r\n\t */\r\n\twidth: 115%;\n}\n.annotationLayer .buttonWidgetAnnotation.checkBox input,\r\n.annotationLayer .buttonWidgetAnnotation.radioButton input {\r\n\t-webkit-appearance: none;\r\n\t-moz-appearance: none;\r\n\tappearance: none;\n}\n.annotationLayer .popupWrapper {\r\n\tposition: absolute;\r\n\twidth: 20em;\n}\n.annotationLayer .popup {\r\n\tposition: absolute;\r\n\tz-index: 200;\r\n\tmax-width: 20em;\r\n\tbackground-color: #FFFF99;\r\n\tbox-shadow: 0px 2px 5px #333;\r\n\tborder-radius: 2px;\r\n\tpadding: 0.6em;\r\n\tmargin-left: 5px;\r\n\tcursor: pointer;\r\n\tword-wrap: break-word;\n}\n.annotationLayer .popup h1 {\r\n\tfont-size: 1em;\r\n\tborder-bottom: 1px solid #000000;\r\n\tpadding-bottom: 0.2em;\n}\n.annotationLayer .popup p {\r\n\tpadding-top: 0.2em;\n}\n.annotationLayer .highlightAnnotation,\r\n.annotationLayer .underlineAnnotation,\r\n.annotationLayer .squigglyAnnotation,\r\n.annotationLayer .strikeoutAnnotation,\r\n.annotationLayer .lineAnnotation svg line,\r\n.annotationLayer .fileAttachmentAnnotation {\r\n\tcursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "/* see https://github.com/mozilla/pdf.js/blob/55a853b6678cf3d05681ffbb521e5228e607b5d2/test/annotation_layer_test.css */\n.annotationLayer {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\tright: 0;\n\tbottom: 0;\n}\n.annotationLayer section {\n\tposition: absolute;\n}\n.annotationLayer .linkAnnotation > a {\n\tposition: absolute;\n\tfont-size: 1em;\n\ttop: 0;\n\tleft: 0;\n\twidth: 100%;\n\theight: 100%;\n}\n.annotationLayer .linkAnnotation > a /* -ms-a */  {\n\tbackground: url(\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\") 0 0 repeat;\n}\n.annotationLayer .linkAnnotation > a:hover {\n\topacity: 0.2;\n\tbackground: #ff0;\n\tbox-shadow: 0px 2px 10px #ff0;\n}\n.annotationLayer .textAnnotation img {\n\tposition: absolute;\n\tcursor: pointer;\n}\n.annotationLayer .textWidgetAnnotation input,\n.annotationLayer .textWidgetAnnotation textarea,\n.annotationLayer .choiceWidgetAnnotation select,\n.annotationLayer .buttonWidgetAnnotation.checkBox input,\n.annotationLayer .buttonWidgetAnnotation.radioButton input {\n\tbackground-color: rgba(0, 54, 255, 0.13);\n\tborder: 1px solid transparent;\n\tbox-sizing: border-box;\n\tfont-size: 9px;\n\theight: 100%;\n\tpadding: 0 3px;\n\tvertical-align: top;\n\twidth: 100%;\n}\n.annotationLayer .textWidgetAnnotation textarea {\n\tfont: message-box;\n\tfont-size: 9px;\n\tresize: none;\n}\n.annotationLayer .textWidgetAnnotation input[disabled],\n.annotationLayer .textWidgetAnnotation textarea[disabled],\n.annotationLayer .choiceWidgetAnnotation select[disabled],\n.annotationLayer .buttonWidgetAnnotation.checkBox input[disabled],\n.annotationLayer .buttonWidgetAnnotation.radioButton input[disabled] {\n\tbackground: none;\n\tborder: 1px solid transparent;\n\tcursor: not-allowed;\n}\n.annotationLayer .textWidgetAnnotation input:hover,\n.annotationLayer .textWidgetAnnotation textarea:hover,\n.annotationLayer .choiceWidgetAnnotation select:hover,\n.annotationLayer .buttonWidgetAnnotation.checkBox input:hover,\n.annotationLayer .buttonWidgetAnnotation.radioButton input:hover {\n\tborder: 1px solid #000;\n}\n.annotationLayer .textWidgetAnnotation input:focus,\n.annotationLayer .textWidgetAnnotation textarea:focus,\n.annotationLayer .choiceWidgetAnnotation select:focus {\n\tbackground: none;\n\tborder: 1px solid transparent;\n}\n.annotationLayer .textWidgetAnnotation input.comb {\n\tfont-family: monospace;\n\tpadding-left: 2px;\n\tpadding-right: 0;\n}\n.annotationLayer .textWidgetAnnotation input.comb:focus {\n\t/*\n\t * Letter spacing is placed on the right side of each character. Hence, the\n\t * letter spacing of the last character may be placed outside the visible\n\t * area, causing horizontal scrolling. We avoid this by extending the width\n\t * when the element has focus and revert this when it loses focus.\n\t */\n\twidth: 115%;\n}\n.annotationLayer .buttonWidgetAnnotation.checkBox input,\n.annotationLayer .buttonWidgetAnnotation.radioButton input {\n\t-webkit-appearance: none;\n\t-moz-appearance: none;\n\tappearance: none;\n}\n.annotationLayer .popupWrapper {\n\tposition: absolute;\n\twidth: 20em;\n}\n.annotationLayer .popup {\n\tposition: absolute;\n\tz-index: 200;\n\tmax-width: 20em;\n\tbackground-color: #FFFF99;\n\tbox-shadow: 0px 2px 5px #333;\n\tborder-radius: 2px;\n\tpadding: 0.6em;\n\tmargin-left: 5px;\n\tcursor: pointer;\n\tword-wrap: break-word;\n}\n.annotationLayer .popup h1 {\n\tfont-size: 1em;\n\tborder-bottom: 1px solid #000000;\n\tpadding-bottom: 0.2em;\n}\n.annotationLayer .popup p {\n\tpadding-top: 0.2em;\n}\n.annotationLayer .highlightAnnotation,\n.annotationLayer .underlineAnnotation,\n.annotationLayer .squigglyAnnotation,\n.annotationLayer .strikeoutAnnotation,\n.annotationLayer .lineAnnotation svg line,\n.annotationLayer .fileAttachmentAnnotation {\n\tcursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -76646,9 +76812,15 @@ var render = function() {
               _c(
                 "template",
                 { slot: "tbody" },
-                _vm._l(_vm.Estatus, function(estatu, index) {
+                _vm._l(_vm.Areas, function(area, index) {
                   return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(_vm._s(estatu.nbEstatus))]),
+                    _c("td", [_vm._v(_vm._s(area.nbArea))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(area.DesAreas))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(area.idZona))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(area.numPersonasPermitidas))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -76657,7 +76829,7 @@ var render = function() {
                           staticClass: "btn btn-success btn-round",
                           on: {
                             click: function($event) {
-                              return _vm.Search(estatu.id)
+                              return _vm.Search(area.id)
                             }
                           }
                         },
@@ -76673,7 +76845,7 @@ var render = function() {
                           staticClass: "btn btn-danger btn-round",
                           on: {
                             click: function($event) {
-                              return _vm.Search(estatu.id)
+                              return _vm.Delet(area.id)
                             }
                           }
                         },
@@ -76730,19 +76902,19 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.nbEstatus,
-                              expression: "nbEstatus"
+                              value: _vm.nbAreas,
+                              expression: "nbAreas"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text" },
-                          domProps: { value: _vm.nbEstatus },
+                          domProps: { value: _vm.nbAreas },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.nbEstatus = $event.target.value
+                              _vm.nbAreas = $event.target.value
                             }
                           }
                         })
@@ -76811,11 +76983,11 @@ var render = function() {
                             }
                           },
                           [
-                            _c("option", { attrs: { value: "si" } }, [
+                            _c("option", { attrs: { value: "SI" } }, [
                               _vm._v("SI")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "no" } }, [
+                            _c("option", { attrs: { value: "NO" } }, [
                               _vm._v("NO")
                             ])
                           ]
@@ -76856,15 +77028,14 @@ var render = function() {
                               }
                             }
                           },
-                          [
-                            _c("option", { attrs: { value: "si" } }, [
-                              _vm._v("SI")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "no" } }, [
-                              _vm._v("NO")
-                            ])
-                          ]
+                          _vm._l(_vm.Zonas, function(zona, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: zona.id } },
+                              [_vm._v(_vm._s(zona.nbZona))]
+                            )
+                          }),
+                          0
                         )
                       ])
                     ])
@@ -76876,8 +77047,25 @@ var render = function() {
                         _c("label", [_vm._v("Descripción")]),
                         _vm._v(" "),
                         _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.DesAreas,
+                              expression: "DesAreas"
+                            }
+                          ],
                           staticClass: "form-control",
-                          attrs: { name: "", id: "", cols: "30", rows: "10" }
+                          attrs: { cols: "30", rows: "10" },
+                          domProps: { value: _vm.DesAreas },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.DesAreas = $event.target.value
+                            }
+                          }
                         })
                       ])
                     ])
@@ -78855,6 +79043,226 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _vm.Form == 1
+        ? _c(
+            "table-basic",
+            [
+              _c("template", { slot: "title" }, [
+                _vm._v("\n\t\t   Usuarios\n                ")
+              ]),
+              _vm._v(" "),
+              _c("template", { slot: "button" }),
+              _vm._v(" "),
+              _c("template", { slot: "thead" }, [
+                _c("th", [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Email")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Acciones")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "template",
+                { slot: "tbody" },
+                _vm._l(_vm.Usuario, function(user, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(user.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(user.email))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-round",
+                          on: {
+                            click: function($event) {
+                              return _vm.Search(user.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "nc-icon nc-simple-delete" }),
+                          _vm._v("Editar")
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-round",
+                          on: {
+                            click: function($event) {
+                              return _vm.Supender(user.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "nc-icon nc-simple-remove" }),
+                          _vm._v("Elimnar")
+                        ]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.Form == 2
+        ? _c(
+            "form-basic",
+            [
+              _c("template", { slot: "title" }, [
+                _vm._v("\n          Usuario     \n        ")
+              ]),
+              _vm._v(" "),
+              _c("template", { slot: "button" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-round",
+                    on: {
+                      click: function($event) {
+                        return _vm.LimpiarCampos()
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "nc-icon nc-minimal-left" }),
+                    _vm._v(" Lista ")
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("template", { slot: "body" }, [
+                _c("form", [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6 pr-1" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Nombre")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.name,
+                              expression: "name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.name = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6 pl-1" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Email")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "update ml-auto mr-auto" }, [
+                      _vm.EsNuevo
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info btn-round",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Save()
+                                }
+                              }
+                            },
+                            [_vm._v("Guardar")]
+                          )
+                        : _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info btn-round",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Update()
+                                }
+                              }
+                            },
+                            [_vm._v("Modificar")]
+                          )
+                    ])
+                  ])
+                ])
+              ])
+            ],
+            2
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/ZonasComponent.vue?vue&type=template&id=47c5b950&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/catalogo/ZonasComponent.vue?vue&type=template&id=47c5b950& ***!
@@ -78913,9 +79321,13 @@ var render = function() {
               _c(
                 "template",
                 { slot: "tbody" },
-                _vm._l(_vm.Estatus, function(estatu, index) {
+                _vm._l(_vm.Zonas, function(zona, index) {
                   return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(_vm._s(estatu.nbEstatus))]),
+                    _c("td", [_vm._v(_vm._s(zona.nbZona))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(zona.DesZonas))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(zona.numPersonasPermitidasMax))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -78924,7 +79336,7 @@ var render = function() {
                           staticClass: "btn btn-success btn-round",
                           on: {
                             click: function($event) {
-                              return _vm.Search(estatu.id)
+                              return _vm.Search(_vm.estatu.id)
                             }
                           }
                         },
@@ -78940,7 +79352,7 @@ var render = function() {
                           staticClass: "btn btn-danger btn-round",
                           on: {
                             click: function($event) {
-                              return _vm.Search(estatu.id)
+                              return _vm.Search(_vm.estatu.id)
                             }
                           }
                         },
@@ -92381,6 +92793,7 @@ Vue.component('empresa-component', __webpack_require__(/*! ./components/catalogo
 Vue.component('proveedor-component', __webpack_require__(/*! ./components/catalogo/ProveedoresComponent.vue */ "./resources/js/components/catalogo/ProveedoresComponent.vue")["default"]);
 Vue.component('registro-component', __webpack_require__(/*! ./components/catalogo/RegistroComponent.vue */ "./resources/js/components/catalogo/RegistroComponent.vue")["default"]);
 Vue.component('servicios-component', __webpack_require__(/*! ./components/catalogo/ServiciosComponent.vue */ "./resources/js/components/catalogo/ServiciosComponent.vue")["default"]);
+Vue.component('usuario-component', __webpack_require__(/*! ./components/catalogo/UsuariosComponent.vue */ "./resources/js/components/catalogo/UsuariosComponent.vue")["default"]);
 Vue.component('sucursal-component', __webpack_require__(/*! ./components/catalogo/SucursalComponent.vue */ "./resources/js/components/catalogo/SucursalComponent.vue")["default"]);
 Vue.component('zona-component', __webpack_require__(/*! ./components/catalogo/ZonasComponent.vue */ "./resources/js/components/catalogo/ZonasComponent.vue")["default"]);
 Vue.component('area-component', __webpack_require__(/*! ./components/catalogo/AreasComponent.vue */ "./resources/js/components/catalogo/AreasComponent.vue")["default"]);
@@ -93153,6 +93566,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/catalogo/UsuariosComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/catalogo/UsuariosComponent.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UsuariosComponent.vue?vue&type=template&id=219e180a& */ "./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a&");
+/* harmony import */ var _UsuariosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UsuariosComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UsuariosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/catalogo/UsuariosComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuariosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuariosComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuariosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UsuariosComponent.vue?vue&type=template&id=219e180a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/catalogo/UsuariosComponent.vue?vue&type=template&id=219e180a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsuariosComponent_vue_vue_type_template_id_219e180a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/catalogo/ZonasComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/catalogo/ZonasComponent.vue ***!
@@ -93415,8 +93897,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/martinmartinez/HAM/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/martinmartinez/HAM/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/martinmartinez/ham/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/martinmartinez/ham/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
