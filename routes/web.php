@@ -97,12 +97,14 @@ Route::get('notificaciones', function(){
     return view('catalogos/Notificaciones');
 })->name('notificaciones');
 
+Route::get('web/notificaciones','NotificacionController@Listar');
 Route::get('web/notifcac/{id}','EstatuController@Buscar');
-Route::get('web/notifservi','NotificacionController@ListarServ');
-Route::get('web/notifservi/{id}','NotificacionController@BuscarServ');
+Route::get('web/notifservi/{id}','NotificacionController@Buscar');
 Route::get('web/notip','NotificacionController@Listartipn');
 Route::get('web/useractive','NotificacionController@ListarUser');
+
 Route::post('web/notifservi/save','NotificacionController@SaveServ');
+
 Route::post('web/notifrecord/save','NotificacionController@SaveRecor');
 
 

@@ -133,7 +133,6 @@ class AreaController extends Controller
     public function Save(Request $request){
 	  $Json =$request ->input('Json',null);
 	  $data=json_decode($Json,true);
-
 	  $areas =new areas();
 	  $areas ->nbArea=$data['nbArea'] ;
 	  $areas ->DesAreas=$data['DesAreas'] ;
@@ -147,7 +146,7 @@ class AreaController extends Controller
 	$Json = $Peticion -> input('Json', null);
         $ParametrosArray = json_decode($Json, true);
         $areas = $this -> Buscar($ParametrosArray['id']);
-        $areas ->idEstatus= "q";
+        $areas ->idEstatus= "11";
         $areas -> save();
 
         $Respuesta = array(
@@ -157,4 +156,44 @@ class AreaController extends Controller
             'canal'         =>       $areas
         );
         return response() -> json($Respuesta,$Respuesta['code']);
+    } 
+    public function Actualizar(Request $Peticion){
+      $Json =$Peticion -> input('Json',null);
+      $data =json_decode($Json,true);
+
+      $areas=$this ->Buscar($data['id']);
+
+      $Validacion =\Validator::make($areas,[
+	   'nbArea'    =>      'required',
+        ]);
+
+        if($Validacion -> fails()){
+
+            $Respuesta = array( 
+                'status'        =>      'error',
+                'code'          =>      '500',
+                'message'       =>      'Error de validacion',
+		'errors'        =>      $Validacion -> errors()
+            );
+
+	}else{
+	  $areas=new areas();
+	  $areas ->nbArea=$data['nbArea'] ;
+	  $areas ->DesAreas=$data['DesAreas'] ;
+	  $areas ->idzona=$data['idzona'] ;
+	  $areas ->numPersonasPermitidas=$data['numPersonasPermitidas'] ;
+	  $areas ->fgAdmiteNinios=$data['fgAdmiteNinios'] ;
+	  $areas -> save();
+
+          $Respuesta = array(
+                'status'        =>      'success',
+                'code'          =>      '200',
+                'message'       =>      'registro guardado',
+                'canal'         =>      $areas
+            );
+	}      
+       	return response() -> json($Respuesta,$Respuesta['code']);
+
+    }
+
 }

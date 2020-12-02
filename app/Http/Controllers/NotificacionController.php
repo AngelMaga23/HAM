@@ -18,11 +18,11 @@ class NotificacionController extends Controller
 	$nott=TipoNotificacion::all();
 	return $nott;
     }
-  public function ListarServ(){
+  public function Listar(){
 	$not=Notificaciones::all();
 	return $not;
     }
-    public function BuscarServ($id){
+    public function Buscar($id){
       $not=Notificaciones::find($id);
       return $not;
     }
@@ -55,24 +55,9 @@ class NotificacionController extends Controller
     }
     public function SaveServ(Request $request){
         $Json = $request -> input('Json', null);
-
         $ParametrosArray = json_decode($Json, true);
-	/*
-        $Validacion = \Validator::make($ParametrosArray,[
-            'titulo'    =>      'required',
-        ]);
-
-        if($Validacion -> fails()){
-
-            $Respuesta = array( 
-                'status'        =>      'error',
-                'code'          =>      '500',
-                'message'       =>      'Error de validacion',
-		'errors'        =>      $Validacion -> errors()
-            );
-
-	} else {*/
-	  $contador=$this->ListarUser();
+	
+	$contador=$this->ListarUser();
 	foreach($contador as $con){
 	  $date=Carbon::Now();
 	  $Notif = new Notificaciones();
@@ -83,7 +68,7 @@ class NotificacionController extends Controller
 	    $Notif -> fechaRegistro= $date->toDateTimeString();
 	    $Notif -> idtipoNotificacion=3; //$ParametrosArray['descripcion'];
 	    $Notif -> idUsuario=$con->id;
-	    $Notif->save() ;
+	    echo  $Notif;
 	    	  }
 
           $Respuesta = array(
@@ -92,8 +77,6 @@ class NotificacionController extends Controller
                 'message'     =>      'registro guardado',
                 'Notification'         =>      $Notif
             );
-
-	  
-	  
+	return $Notif; 
     }
 }

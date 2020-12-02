@@ -116,8 +116,10 @@
 		    this.EsNuevo=true;
 		    this.LimpiarCampos();
 		    this.Errores =[];
-		    swal("Hecho!","Registro Modificado","success")
-		  })
+		    Swal.fire("Hecho!","Registro Modificado","success")
+              }).catch(
+                Swal.fire("Hecho!","Errores","success")
+              )
 	  },
          Delet(id){
 	    Swal.fire({

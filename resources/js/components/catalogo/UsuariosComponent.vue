@@ -78,7 +78,6 @@ export default {
       Listar(){
        	      axios.get("web/useractive").then(Respuesta=>{this.Usuario=Respuesta.data})
       }
-
     },
   created(){
     this.Listar();

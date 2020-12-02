@@ -13,6 +13,7 @@ class Notificaciones extends Model
     protected $fillable = [
         'idtipoNotificacion',
 	'titulo',
+	'subtitulo',
 	'descripcion',
 	'fechaRegistro',
 	'fechaEvento',

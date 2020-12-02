@@ -2627,8 +2627,8 @@ __webpack_require__.r(__webpack_exports__);
         _this4.LimpiarCampos();
 
         _this4.Errores = [];
-        swal("Hecho!", "Registro Modificado", "success");
-      });
+        Swal.fire("Hecho!", "Registro Modificado", "success");
+      })["catch"](Swal.fire("Hecho!", "Errores", "success"));
     },
     Delet: function Delet(id) {
       var _this5 = this;
@@ -2988,7 +2988,7 @@ __webpack_require__.r(__webpack_exports__);
     Listar: function Listar() {
       var _this = this;
 
-      axios.get("web/notifservi").then(function (Respuesta) {
+      axios.get("web/notificaciones").then(function (Respuesta) {
         _this.Notificacion = Respuesta.data;
       });
     },
@@ -3031,7 +3031,7 @@ __webpack_require__.r(__webpack_exports__);
     retur: function retur(id) {
       axios.get("web/notifcac/" + id).then(function (Respuesta) {});
     },
-    SaveNotifServ: function SaveNotifServ() {
+    SavaR: function SavaR() {
       var _this5 = this;
 
       axios.post("web/notifrecord/save", {
@@ -3046,7 +3046,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.LimpiarCampos();
       })["catch"]();
     },
-    SaveNotifRec: function SaveNotifRec() {
+    SaveS: function SaveS() {
       var _this6 = this;
 
       var json = {
@@ -3061,7 +3061,7 @@ __webpack_require__.r(__webpack_exports__);
         alert("guardato");
 
         _this6.LimpiarCampos();
-      })["catch"]();
+      })["catch"](alert("error"));
     }
   },
   created: function created() {
@@ -78399,7 +78399,7 @@ var render = function() {
                               staticClass: "btn btn-info btn-round",
                               on: {
                                 click: function($event) {
-                                  return _vm.SaveNotifServ()
+                                  return _vm.SaveS()
                                 }
                               }
                             },
@@ -78607,7 +78607,7 @@ var render = function() {
                                   staticClass: "btn btn-info btn-round",
                                   on: {
                                     click: function($event) {
-                                      return _vm.SaveNotifRec()
+                                      return _vm.SaveR()
                                     }
                                   }
                                 },

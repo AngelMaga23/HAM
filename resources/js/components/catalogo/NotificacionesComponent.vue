@@ -65,7 +65,7 @@
               </div>
                           <div class="row">
                 <div class="update ml-auto mr-auto">
-                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="SaveNotifServ()">Guardar</button>
+                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="SaveS()">Guardar</button>
 	              <button v-else @click="Update()" class="btn btn-info btn-round">Modificar</button>
                 </div>
               </div>
@@ -108,7 +108,7 @@
               </div>   
 	      <div class="form-group row">
                 <div class="update ml-auto mr-auto  col-sm-8">
-                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="SaveNotifRec()">Guardar</button>
+                      <button  v-if="EsNuevo" class="btn btn-info btn-round" @click="SaveR()">Guardar</button>
 	              <button v-else @click="Update()" class="btn btn-info btn-round">Modificar</button>
                 </div>
 	      </div>
@@ -175,7 +175,7 @@ export default {
               this.Form=3;
             },
     Listar(){
-      axios.get("web/notifservi").then(Respuesta=>{this.Notificacion=Respuesta.data})                
+      axios.get("web/notificaciones").then(Respuesta=>{this.Notificacion=Respuesta.data})                
             },
             ListarUser(){
 	      axios.get("web/useractive").then(Respuesta=>{this.Usuario=Respuesta.data})
@@ -209,7 +209,7 @@ export default {
         axios.get("web/notifcac/"+id).then(Respuesta=>{
         })
     },
-          SaveNotifServ(){
+          SavaR(){
 	      axios.post("web/notifrecord/save",{
 		titulo:this.titulo,
 		descripcion:this.descripcion,
@@ -222,7 +222,7 @@ export default {
 		    this.LimpiarCampos();
 		  }).catch();
 	    },
-	    SaveNotifRec(){
+	    SaveS(){
 	      let json={
 		titulo:this.titulo,
 		descripcion:this.descripcion,
@@ -233,7 +233,7 @@ export default {
 		.then(Respuesta=>{
                   alert("guardato");
                   this.LimpiarCampos();
-		    }).catch();
+		    }).catch(alert("error"));
 	    }
   },
   created(){

@@ -199,7 +199,7 @@ class ZonaController extends Controller
 
 	} else {
 	
-         /*   $Zona = new zonas();
+          $Zona = new zonas();
 
             $Zona -> Nombre = $ParametrosArray['Nombre'];
             $Zona -> DesZonas = $ParametrosArray['DesZonas'];
@@ -214,7 +214,7 @@ class ZonaController extends Controller
                 'message'       =>      'registro guardado',
                 'canal'         =>      $Zona
             );
-	  */
+	  
         }
 
        /* return response() -> json($Respuesta,$Respuesta['code']);*/
