@@ -124,6 +124,18 @@ export default {
       Listarzona(){
         axios.get('web/zonas').then(Respuesta=>{this.Zonas=Respuesta.data})
       },
+      
+      Search(id){
+          axios.get("web/areas/"+id).then(Respuesta=>{
+		  this.EsNuevo=false;
+		  this.nbAreas=Respuesta.data.nbArea;
+                  this.DesAreas=Respuesta.data.DesAreas;
+                  this.IdZona=Respuesta.data.idZona;
+                  this.NumPersonasMax=Respuesta.data.numPersonasPermitidas;
+                  this.FgAdmiteNinios=Respuesta.data.fgAdmiteNinios;
+                  this.modal();        
+		})
+      },
       Save(){
         let json={
           nbArea:this.nbAreas,
@@ -143,17 +155,6 @@ export default {
 		    }
                   });     
       },
-      Search(id){
-          axios.get("web/areas/"+id).then(Respuesta=>{
-		  this.EsNuevo=false;
-		  this.nbAreas=Respuesta.data.nbArea;
-                  this.DesAreas=Respuesta.data.DesAreas;
-                  this.IdZona=Respuesta.data.idZona;
-                  this.NumPersonasMax=Respuesta.data.numPersonasPermitidas;
-                  this.FgAdmiteNinios=Respuesta.data.fgAdmiteNinios;
-                  this.modal();        
-		})
-      },
         Update(){
 	    let json={
 		nbEstatus:this.nbEstatus,
@@ -168,9 +169,27 @@ export default {
 		  })
 	  },
       Delet(id){
-        
-      }
-    },
+	    Swal.fire({
+		title:"¿Estas seguro?", 
+		text:"El elemento sera eliminado!",
+		icon:"warning",
+		buttons:true,
+		dangerMode:true
+		}).then(willDelete =>{
+		    if(willDelete){
+		      let json ={
+			id:id
+		      };
+		      axios.post("web/areas/delete",{Json:JSON.stringify(json)})
+			.then(Respuesta=>{
+			    swal("Hecho!","Eliminado","success");
+			    this.Listar();
+			  });
+			}	else{
+				  
+			}
+		  });
+	  }    },
     created(){
       this.Form=1;
       this.Listar();

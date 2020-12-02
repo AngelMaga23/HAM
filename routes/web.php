@@ -76,6 +76,7 @@ Route::get('web/areas','AreaController@Listar');
 Route::get('web/areas/{id}','AreaController@Buscar');
 
 Route::post('web/areas/save','AreaController@Save');
+Route::post('web/areas/delete','AreaController@Delete');
 //Rutas Estatus
 //vista
 Route::get('Estatus', function(){

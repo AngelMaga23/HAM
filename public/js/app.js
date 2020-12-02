@@ -2184,8 +2184,22 @@ __webpack_require__.r(__webpack_exports__);
         _this2.Zonas = Respuesta.data;
       });
     },
-    Save: function Save() {
+    Search: function Search(id) {
       var _this3 = this;
+
+      axios.get("web/areas/" + id).then(function (Respuesta) {
+        _this3.EsNuevo = false;
+        _this3.nbAreas = Respuesta.data.nbArea;
+        _this3.DesAreas = Respuesta.data.DesAreas;
+        _this3.IdZona = Respuesta.data.idZona;
+        _this3.NumPersonasMax = Respuesta.data.numPersonasPermitidas;
+        _this3.FgAdmiteNinios = Respuesta.data.fgAdmiteNinios;
+
+        _this3.modal();
+      });
+    },
+    Save: function Save() {
+      var _this4 = this;
 
       var json = {
         nbArea: this.nbAreas,
@@ -2197,27 +2211,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("web/areas/save", {
         Json: JSON.stringify(json)
       }).then(function (Respuesta) {
-        _this3.Listar();
+        _this4.Listar();
 
-        _this3.LimpiarCampos();
+        _this4.LimpiarCampos();
       })["catch"](function (error) {
         if (error.response.status == 500) {
-          _this3.Errores = error.response.data.errores;
+          _this4.Errores = error.response.data.errores;
         }
-      });
-    },
-    Search: function Search(id) {
-      var _this4 = this;
-
-      axios.get("web/areas/" + id).then(function (Respuesta) {
-        _this4.EsNuevo = false;
-        _this4.nbAreas = Respuesta.data.nbArea;
-        _this4.DesAreas = Respuesta.data.DesAreas;
-        _this4.IdZona = Respuesta.data.idZona;
-        _this4.NumPersonasMax = Respuesta.data.numPersonasPermitidas;
-        _this4.FgAdmiteNinios = Respuesta.data.fgAdmiteNinios;
-
-        _this4.modal();
       });
     },
     Update: function Update() {
@@ -2238,7 +2238,30 @@ __webpack_require__.r(__webpack_exports__);
         swal("Hecho!", "Registro Modificado", "success");
       });
     },
-    Delet: function Delet(id) {}
+    Delet: function Delet(id) {
+      var _this6 = this;
+
+      Swal.fire({
+        title: "¿Estas seguro?",
+        text: "El elemento sera eliminado!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          var json = {
+            id: id
+          };
+          axios.post("web/areas/delete", {
+            Json: JSON.stringify(json)
+          }).then(function (Respuesta) {
+            swal("Hecho!", "Eliminado", "success");
+
+            _this6.Listar();
+          });
+        } else {}
+      });
+    }
   },
   created: function created() {
     this.Form = 1;
@@ -2532,7 +2555,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2611,7 +2633,7 @@ __webpack_require__.r(__webpack_exports__);
     Delet: function Delet(id) {
       var _this5 = this;
 
-      swal({
+      Swal.fire({
         title: "¿Estas seguro?",
         text: "El elemento sera eliminado!",
         icon: "warning",
@@ -3377,7 +3399,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      Usuario: []
+      Usuario: [],
+      Form: ""
     };
   },
   methods: {
@@ -3397,6 +3420,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.Usuario = Respuesta.data;
       });
     }
+  },
+  created: function created() {
+    this.Listar();
+    this.Form = 1;
   }
 });
 
@@ -77709,22 +77736,6 @@ var render = function() {
                           _c("i", { staticClass: "nc-icon nc-simple-delete" }),
                           _vm._v("Editar")
                         ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger btn-round",
-                          on: {
-                            click: function($event) {
-                              return _vm.Search(estatu.id)
-                            }
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "nc-icon nc-simple-remove" }),
-                          _vm._v("Elimnar")
-                        ]
                       )
                     ])
                   ])
@@ -77827,12 +77838,12 @@ var render = function() {
                             }
                           },
                           [
-                            _c("option", { attrs: { value: "default" } }, [
-                              _vm._v("Default")
+                            _c("option", { attrs: { value: "Acceso" } }, [
+                              _vm._v("Acceso")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "Rule" } }, [
-                              _vm._v("Rule")
+                            _c("option", { attrs: { value: "General" } }, [
+                              _vm._v("General")
                             ])
                           ]
                         )
@@ -79102,7 +79113,7 @@ var render = function() {
                         },
                         [
                           _c("i", { staticClass: "nc-icon nc-simple-delete" }),
-                          _vm._v("Editar")
+                          _vm._v("Ver")
                         ]
                       ),
                       _vm._v(" "),
@@ -79118,7 +79129,7 @@ var render = function() {
                         },
                         [
                           _c("i", { staticClass: "nc-icon nc-simple-remove" }),
-                          _vm._v("Elimnar")
+                          _vm._v("Suspender")
                         ]
                       )
                     ])

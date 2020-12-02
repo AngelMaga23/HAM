@@ -16,7 +16,6 @@
 		  <td>{{estatu.nbEstatus}}</td>
 		  <td>
 		    <button @click="Search(estatu.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
-		    <button @click="Search(estatu.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
 		  </td>
 		</tr>
 		</template>
@@ -41,8 +40,8 @@
                       <div class="form-group">
                         <label>Tipo Estatus</label>
                           <select v-model="tpEstatus" name="" id="" class="form-control">
-		            <option value="default">Default</option>
-		            <option value="Rule">Rule</option>
+		            <option value="Acceso">Acceso</option>
+		            <option value="General">General</option>
 		          </select>
                       </div>
                     </div>
@@ -120,8 +119,8 @@
 		    swal("Hecho!","Registro Modificado","success")
 		  })
 	  },
-	  Delet(id){
-	    swal({
+         Delet(id){
+	    Swal.fire({
 		title:"¿Estas seguro?", 
 		text:"El elemento sera eliminado!",
 		icon:"warning",

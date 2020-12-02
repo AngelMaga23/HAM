@@ -16,8 +16,8 @@
                   <td>{{user.name}}</td>
                   <td>{{user.email}}</td>
 		  <td>
-		    <button @click="Search(user.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Editar</button>
-		    <button @click="Supender(user.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Elimnar</button>
+		    <button @click="Search(user.id)" class="btn btn-success btn-round"> <i class="nc-icon nc-simple-delete"></i>Ver</button>
+		    <button @click="Supender(user.id)" class="btn btn-danger btn-round"> <i class="nc-icon nc-simple-remove"></i>Suspender</button>
 		  </td>
 		</tr>
 		</template>
@@ -61,6 +61,7 @@ export default {
     data() {
         return {
           Usuario:[],
+          Form:""
         };
     },
     methods: {
@@ -78,6 +79,10 @@ export default {
        	      axios.get("web/useractive").then(Respuesta=>{this.Usuario=Respuesta.data})
       }
 
-    }
+    },
+  created(){
+    this.Listar();
+    this.Form=1;
+  }
 };
 </script>

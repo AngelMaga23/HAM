@@ -170,9 +170,19 @@ class EstatuController extends Controller
 
     }
     public function Eliminar(Request $Peticion){
+	$Json = $Peticion -> input('Json', null);
+        $ParametrosArray = json_decode($Json, true);
+        $estatus = $this -> Buscar($ParametrosArray['id']);
+        $estatus -> RegStatus = "";
+        $estatus -> save();
 
+        $Respuesta = array(
+            'status'        =>      'success',
+            'code'          =>      '200',
+            'message'       =>      'registro eliminado',
+            'canal'         =>       $estatus
+        );
+        return response() -> json($Respuesta,$Respuesta['code']);
     }   
-
-
 
 }

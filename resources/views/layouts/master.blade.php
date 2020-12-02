@@ -13,6 +13,8 @@
         @yield('titulo')
     </title>
   <!--Default-->
+  <!--sweetalert2-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -28,7 +30,6 @@
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
 	  <div class="logo-image-small">
           </div>
-          <!-- <p>CT</p> -->
         </a>
 	<a href="#" class="simple-text logo-normal">
 		    HAM

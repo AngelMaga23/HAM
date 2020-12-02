@@ -143,4 +143,18 @@ class AreaController extends Controller
 	  $areas ->save();
 
     }
+    public function Delet(Request $Peticion){
+	$Json = $Peticion -> input('Json', null);
+        $ParametrosArray = json_decode($Json, true);
+        $areas = $this -> Buscar($ParametrosArray['id']);
+        $areas ->idEstatus= "q";
+        $areas -> save();
+
+        $Respuesta = array(
+            'status'        =>      'success',
+            'code'          =>      '200',
+            'message'       =>      'registro eliminado',
+            'canal'         =>       $areas
+        );
+        return response() -> json($Respuesta,$Respuesta['code']);
 }
