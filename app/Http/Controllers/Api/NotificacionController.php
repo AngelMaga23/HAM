@@ -50,9 +50,8 @@ class NotificacionController extends Controller
         try {
             
             $notifiaciones = DB::table('Notificaciones as n')
-                                ->select(DB::raw('tn.nbTipoNotificacion,n.id as idreservacion,n.titulo,n.subtitulo,n.descripcion,n.fechaRegistro,n.fechaEvento,n.fgVisto,r.tpReservacion'))
+                                ->select(DB::raw('tn.nbTipoNotificacion,n.id as idreservacion,n.titulo,n.subtitulo,n.descripcion,n.fechaRegistro,n.fechaEvento,n.fgVisto'))
                                 ->join('TipoNotificacion as tn','n.idtipoNotificacion','=','tn.id')
-                                ->join('reservaciones as r','n.idReservacion','=','r.id')
                                 ->where('n.idUsuario',$id)
                                 ->orderBy('n.fechaRegistro','desc')
                                 ->get();

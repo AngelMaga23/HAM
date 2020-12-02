@@ -22,6 +22,7 @@ class ZonaController extends Controller
                         ->select(DB::raw('zonas.id as idzona, zonas.nbZona, zonas.DesZonas, zonas.pathArchivo, zonas.numPersonasPermitidasMax, estatus.nbEstatus, estatus.tpEstatus,(SELECT COUNT(*) FROM areas WHERE areas.idZona = zonas.id) as cantAreas'))
                         ->join('estatus','zonas.idEstatus','=','estatus.id')
                         ->leftJoin('areas','zonas.id','=','areas.idZona')
+                        ->groupBy('zonas.id')
                         ->get();
 
             // $zonas = DB::table('zonas as z')
