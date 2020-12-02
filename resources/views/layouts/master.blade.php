@@ -26,12 +26,11 @@
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-          <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
+	  <div class="logo-image-small">
           </div>
           <!-- <p>CT</p> -->
         </a>
-	<a href="https://www.creative-tim.com" class="simple-text logo-normal">
+	<a href="#" class="simple-text logo-normal">
 		    HAM
         </a>
       </div>
@@ -39,71 +38,53 @@
         <ul class="nav">
 	  <li>
             <a href="{{ route('areas') }}">
-                <i class="nc-icon nc-bank"></i>
+                <i class="nc-icon nc-air-baloon"></i>
                 <p>Areas</p>
               </a> 
           </li>
-          <li>
-            <a href="{{ route('empleados') }}">
-              <i class="nc-icon nc-diamond"></i>
-              <p>Empleados</p>
-            </a>
-          </li>
-          <li >
+                   <li >
             <a href="{{ route('empresa') }}">
-              <i class="nc-icon nc-pin-3"></i>
+              <i class="nc-icon nc-briefcase-24"></i>
               <p>Empresas</p>
             </a>
           </li>
           <li>
             <a href="{{ route('estatus') }}">
-              <i class="nc-icon nc-bell-55"></i>
+              <i class="nc-icon nc-tag-content"></i>
               <p>Estatus</p>
             </a>
           </li>
           <li>
-            <a href="{{ route('habitaciones') }}">
-              <i class="nc-icon nc-single-02"></i>
-              <p>Habitaciones</p>
-            </a>
-          </li>
-          <li>
+                   <li>
             <a href="{{ route('notificaciones') }}">
-              <i class="nc-icon nc-tile-56"></i>
+              <i class="nc-icon nc-bell-55"></i>
               <p>Notificaciones</p>
             </a>
           </li>
           <li>
             <a href="{{ route('defaul') }}">
-              <i class="nc-icon nc-caps-small"></i>
-              <p>Proveedores</p>
-            </a>
-          </li>
-           <li>
-            <a href="{{ route('servicios') }}">
-              <i class="nc-icon nc-caps-small"></i>
-              <p>Servicios</p>
-            </a>
-          </li>
-	   <li>
-            <a href="{{ route('defaul') }}">
-              <i class="nc-icon nc-caps-small"></i>
+              <i class="nc-icon nc-briefcase-24"></i>
               <p>Sucursales</p>
             </a>
           </li>
 	  <li>
             <a href="{{ route('zonas') }}">
-              <i class="nc-icon nc-caps-small"></i>
+              <i class="nc-icon nc-pin-3"></i>
               <p>Zona</p>
             </a>
           </li>
 	  <li>
-            <a href="./typography.html">
-              <i class="nc-icon nc-caps-small"></i>
+            <a href="{{ route('user') }}">
+              <i class="nc-icon nc-single-02"></i>
               <p>Usuarios</p>
             </a>
           </li>
-
+	  <li>
+            <a href="{{route('qr')}}">
+              <i class="nc-icon nc-app"></i>
+              <p>Qr</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

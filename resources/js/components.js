@@ -1,9 +1,8 @@
-Vue.component('notificaciones-component', require('./components/catalogo/NotificacionesComponent.vue').default);
 
+Vue.component('notificaciones-component', require('./components/catalogo/NotificacionesComponent.vue').default);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('registro-component', require('./components/catalogo/RegistroComponent.vue').default);
 Vue.component('empresa-component', require('./components/catalogo/EmpresaComponent.vue').default);
-Vue.component('empleado-component', require('./components/catalogo/EmpleadosComponent.vue').default);
 Vue.component('proveedor-component', require('./components/catalogo/ProveedoresComponent.vue').default);
 Vue.component('registro-component', require('./components/catalogo/RegistroComponent.vue').default);
 Vue.component('servicios-component', require('./components/catalogo/ServiciosComponent.vue').default);

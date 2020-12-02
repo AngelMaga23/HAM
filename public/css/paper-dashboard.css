@@ -3197,7 +3197,7 @@ License - nucleoapp.com/license/
     z-index: 3; }
   .sidebar[data-color="white"]:after,
   .off-canvas-sidebar[data-color="white"]:after {
-    background: #FFFFFF; }
+    background: #066384; }
   .sidebar[data-color="white"] .nav li a,
   .sidebar[data-color="white"] .nav li a i,
   .sidebar[data-color="white"] .nav li a[data-toggle="collapse"],
@@ -3210,7 +3210,7 @@ License - nucleoapp.com/license/
   .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] i,
   .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li .sidebar-mini-icon,
   .off-canvas-sidebar[data-color="white"] .nav li a[data-toggle="collapse"] ~ div > ul > li > a {
-    color: #66615B;
+    color: #FFFFFF;
     opacity: .7; }
   .sidebar[data-color="white"] .nav li:hover:not(.active) > a,
   .sidebar[data-color="white"] .nav li:focus:not(.active) > a,
@@ -3219,10 +3219,10 @@ License - nucleoapp.com/license/
     opacity: 1; }
   .sidebar[data-color="white"] .logo .simple-text,
   .off-canvas-sidebar[data-color="white"] .logo .simple-text {
-    color: #66615B; }
+    color: #FFFFFF; }
   .sidebar[data-color="white"] .logo:after,
   .off-canvas-sidebar[data-color="white"] .logo:after {
-    background-color: #66615B;
+    background-color: #FFFFFF;
     opacity: .4; }
   .sidebar[data-color="white"] .user .info a span,
   .sidebar[data-color="white"] .user .nav .sidebar-mini-icon,

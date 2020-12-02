@@ -28,6 +28,7 @@
         "qrcode.vue": "^1.7.0",
         "sweetalert2": "^10.10.1",
         "vue-filepond": "^6.0.3",
-        "vue-has-error-laravel": "^0.1.16"
+        "vue-has-error-laravel": "^0.1.16",
+        "vue-pdf": "^4.2.0"
     }
 }

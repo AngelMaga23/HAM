@@ -22,15 +22,18 @@ Route::get('defaul', function () {
     return view('catalogos/Default');
 })->name('defaul');
 
+Route::get('user',function(){
+    return view('catalogos/User');
+})->name('user');
 
 Route::get('empresa', function(){
     return view('catalogos/Empresa');
 })->name('empresa');
 
 
-Route::get('Empleados', function(){
-    return view('catalogos/Empleados');
-})->name('empleados');
+Route::get('qr', function(){
+    return view('catalogos/Qr');
+})->name('qr');
 
 Route::get('habitaciones', function(){
     return view('catalogos/Habitaciones');
@@ -46,9 +49,6 @@ Route::get('Servicios', function(){
     return view('catalogos/Servicios');
 })->name('servicios');
 
-Route::get('areas', function(){
-    return view('catalogos/Areas');
-})->name('areas');
 
 Auth::routes();
 
@@ -68,7 +68,11 @@ Route::post('web/zonas/save','ZonaController@Agregar');
 Route::post('web/save','ZonaController@saveimg');
 
 //Rutas Areas
+Route::get('areas', function(){
+    return view('catalogos/Areas');
+})->name('areas');
 
+Route::get('web/zonas','ZonaController@Listar');
 
 //Rutas Estatus
 //vista

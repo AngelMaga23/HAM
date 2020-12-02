@@ -118,6 +118,9 @@ export default {
       Listar(){
 
       },
+      Listarzona(){
+
+      },
       Save(){
 
       },
